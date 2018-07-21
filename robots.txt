@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /files/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /javascripts/
+Disallow: /modules/
+Disallow: /themes/

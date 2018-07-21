@@ -1,0 +1,105 @@
+/*  Calendar Styles
+---------------------------------------------------------------*/
+.calendar {
+	background: #919191; 
+	width: 100%;
+	border: 1px solid #aaa;
+	border-collapse: collapse;
+}
+
+#calendarNext, #calendarPrev {
+	width: 33%;
+}
+
+#calendarNext a:link, #calendarPrev a:link, #calendarNext a:visited, #calendarPrev a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+#calendarNext a:hover, #calendarPrev a:hover {
+	text-decoration: underline;
+}
+
+#calendarMonth {
+	width: 33%;	
+}
+
+.today { 
+	color: #000000; 
+	background: #EFEFEF; 
+	height: 110px;
+	width: 110px;
+	font-weight: bold;
+}
+
+.monthdays { 
+	color: #000000; 
+	background: #FFF;  
+	height: 110px;
+	width: 110px;
+}
+
+.date {  
+	height: 15px;
+}
+
+.appointments {  
+	height: 95px;
+}
+
+.nonmonthdays { 
+	color: #000000; 
+	background: #EFEFEF; 
+	height: 110px;
+	width: 110px;
+}
+
+/*  Invoice Styles
+---------------------------------------------------------------*/
+#invoice {
+}
+
+#companyInfoBlock {
+	margin: 0 0 5em;
+}
+
+#invoiceProductsTable {
+	margin: 1em 0 0;
+}
+
+#clientInfoBlock, #invoiceDetailsBlock, #invoiceTotalsBlock {
+	width: 450px;
+}
+
+#invoiceDetailsBlock {
+	float: right;
+}
+
+#invoiceTotalsBlockWrapper {
+	height: 100px;
+	margin: 1em 0 0;
+	position: relative; 
+	clear: both;
+}
+
+#invoiceTotalsBlock {
+	position: absolute; 
+	right: 0;
+}
+
+#invoiceDetailsBlock span, #invoiceTotalsBlock span {
+	width: 250px;
+	float: left;
+}
+
+#invoiceDetailsBlock span.noFloat, #invoiceTotalsBlock span.noFloat { 
+	float: none; 
+}
+
+#invoiceDetailsBlock strong, #invoiceTotalsBlock strong {
+	background: #323437 url('images/titleRowBG.png');
+	color: #fff;
+	border: 1px solid #353535;
+	padding: 0.4em 0.2em;
+	display: block;
+}

@@ -1,0 +1,131 @@
+&-mm-bg #main-menu-bg {
+  // Body/Menu background
+  background-color: @menu-color;
+}
+&-mm-bg {
+  #main-menu .mm-dropdown > ul,
+  .mmc-dropdown-open-ul {
+    background: lighten(@menu-color, 3%);
+  }
+}
+&-mm-bg #main-menu {
+  .navigation a,
+  .mmc-dropdown-open-ul a {
+    color: lighten(@menu-color, 40%);
+    position: relative;
+    .transition(all .2s);
+  }
+
+  li.active > a {
+    background: darken(@menu-color, 5%);
+    color: @linkFontColor;
+
+    & .menu-icon {
+      color: @header-color;
+    }
+
+    &:after {
+      display: block;
+    }
+  }
+}
+&-mm-titles #main-menu {
+    li.nav-header {
+        .fts-bg(@bg, @gradStart, @gradEnd);
+    	color: @navHeaderFontColor;
+    }
+  .navigation a,
+  .mmc-dropdown-open-ul a {
+    &:after {
+      content: "";
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      position: absolute;
+      right: auto;
+      background: darken(@header-color, 5%);
+      display: none;
+      left: 0;
+    }
+
+    &:hover {
+      color: @linkFontColor;
+
+      &:after {
+        display: block !important;
+      }
+    }
+  }
+
+  .mm-dropdown.active {
+    & > a {
+      background: none;
+    }
+
+    & > a:after {
+      display: none;
+    }
+  }
+
+  .mmc-dropdown-open-ul .mmc-title {
+    background: darken(@header-color, 5%);
+    color: @linkFontColor;
+  }
+
+  .mmc-dropdown-open {
+    > a {
+      background: darken(@header-color, 5%) !important;
+      
+      &,
+      .menu-icon {
+        color: @linkFontColor !important;
+      }
+
+      &:hover:after {
+        display: none !important;
+      }
+    }
+  }
+
+  // Main menu content blocks
+  .menu-content {
+    border-color: lighten(@menu-color, 5%);
+
+    .btn-outline {
+      border-color: lighten(@menu-color, 5%);
+      color: lighten(@menu-color, 40%);
+
+      &:hover {
+        color: @linkFontColor;
+      }
+    }
+  }
+}
+
+// Dropdown highlights
+//
+
+// Highlight opened dropdown
+.mmc-dropdown-open .mm-dropdown.open > a,
+&-mm-titles&.mme #main-menu .mm-dropdown.open > a {
+  color: @linkFontColor;
+}
+
+@media (min-width: @screen-tablet) {
+  // Highlight expanded submenus
+  &-mm-titles#main-menu .mm-dropdown.open > a {
+    color: @linkFontColor;
+  }
+
+  // Unhighlight expanded submenus in collapsed mode
+  &-mm-titles &.mmc #main-menu .navigation > .mm-dropdown.open > a {
+    color: lighten(@menu-color, 40%);
+  }
+}
+
+&.right-to-left {
+  &-mm-titles #main-menu .navigation a:after {
+    left: auto;
+    right: 0;
+  }
+}

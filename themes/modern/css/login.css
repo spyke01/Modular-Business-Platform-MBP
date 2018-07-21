@@ -1,0 +1,370 @@
+/*  Login Styles
+---------------------------------------------------------------*/
+div#login {
+  margin:auto;
+}
+
+div#login-box-wrapper {
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-webkit-animation-duration: 2s;
+    -moz-animation-delay: 0.5s;
+    -ms-animation-delay: 0.5s;
+    -webkit-animation-delay: 0.5s;	
+}
+
+div#login-logo {
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-webkit-animation-duration: 2s;
+    -moz-animation-delay: 1.5s;
+    -ms-animation-delay: 1.5s;
+    -webkit-animation-delay: 1.5s;	
+	padding-top:16px;
+	z-index:15;
+	width:400px;
+	position:relative;
+	margin:auto;
+	text-align: center;
+}
+div#login-top-shadow {
+  background:url('../images/login/login-shadow.png') no-repeat center top;
+  padding-top:16px;
+  z-index:15;
+  width:450px;
+  position:relative;
+  margin:auto;
+}
+
+div#login #login-bottom-shadow {
+  width:320px;
+  height:11px;
+  z-index:20;
+  background:url('../images/login/login-box-footer.png') no-repeat center top;
+  margin:auto;
+}
+
+div#login #login-box {
+  width:280px;
+  z-index:10;
+  background:url('../images/login/login-box-bg.png') #fff;
+  margin:-15px auto auto;
+}
+
+div#login #login-box #login-box-header {
+  margin-bottom:10px;
+  border-bottom:1px dashed #888;
+  padding:10px 40px;
+}
+
+div#login #login-box #login-box-header h1 {
+  font-size:18px;
+  color:#444;
+  font-weight:400;
+}
+
+#login-box .box {
+	background: transparent;
+	border: none;
+}
+
+#login-box .box:after, #login-box .box:before {
+	display: none;	
+}
+
+#login-box .box .form-container .form-horizontal .form-actions {
+	padding: 0;	
+}
+
+div#login #login-box #login-box-content {
+  padding:10px 20px;
+}
+
+div#login #login-box #login-box-footer {
+  text-align:center;
+  position:relative;
+  padding:0 40px 20px;
+}
+
+div#login #login-box #login-box-footer #login-tape {
+  background:url('../images/login/login-tape.png') no-repeat center center;
+  width:99px;
+  height:26px;
+  position:absolute;
+  bottom:-13px;
+  left:50%;
+  margin-left:-50px;
+}
+
+/*  Button Styling - This is now themed so doesn't work by default
+---------------------------------------------------------------*/
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33;
+}
+
+.btn:hover, .btn:focus {
+    background-position: 0 -15px !important;
+    text-decoration: none !important;
+    transition: background-position 0.1s linear 0s !important;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background: -moz-linear-gradient(top, #0088cc, #0044cc) repeat-x #0044cc !important;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc)) repeat-x #0044cc !important;
+  background: -webkit-linear-gradient(top, #0088cc, #0044cc) repeat-x #0044cc !important;
+  background: -o-linear-gradient(top, #0088cc, #0044cc) repeat-x #0044cc !important;
+  background: linear-gradient(to bottom, #0088cc, #0044cc) repeat-x #0044cc !important;
+  border-color: #285e8e;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #003399 \9;
+}
+
+.btn-success {
+  color: #ffffff;
+  background-color: #5bb75b;
+  *background-color: #51a351;
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  color: #ffffff;
+  background-color: #51a351;
+  *background-color: #499249;
+}
+
+.btn-success:active,
+.btn-success.active {
+  background-color: #408140 \9;
+}
+
+.btn-warning {
+  color: #ffffff;
+  background-color: #faa732;
+  *background-color: #f89406;
+  background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+  background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+  background-image: -o-linear-gradient(top, #fbb450, #f89406);
+  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-repeat: repeat-x;
+  border-color: #f89406 #f89406 #ad6704;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fff89406', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning.disabled,
+.btn-warning[disabled] {
+  color: #ffffff;
+  background-color: #f89406;
+  *background-color: #df8505;
+}
+
+.btn-warning:active,
+.btn-warning.active {
+  background-color: #c67605 \9;
+}
+
+.btn-danger {
+  color: #ffffff;
+  background-color: #da4f49;
+  *background-color: #bd362f;
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger.disabled,
+.btn-danger[disabled] {
+  color: #ffffff;
+  background-color: #bd362f;
+  *background-color: #a9302a;
+}
+
+.btn-danger:active,
+.btn-danger.active {
+  background-color: #942a25 \9;
+}
+
+.btn-info {
+  color: #ffffff;
+  background-color: #49afcd;
+  *background-color: #2f96b4;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.btn-info.disabled,
+.btn-info[disabled] {
+  color: #ffffff;
+  background-color: #2f96b4;
+  *background-color: #2a85a0;
+}
+
+.btn-info:active,
+.btn-info.active {
+  background-color: #24748c \9;
+}
+
+/*  Login Form
+---------------------------------------------------------------*/
+#loginForm fieldset {
+	border: 0;
+	padding: 0;
+}
+
+#loginForm fieldset legend, .box-header, #loginForm label {
+	display: none;
+}
+
+#login-box .box .tab-content {
+	background: transparent;
+	border: none;
+	padding: 0;	
+}
+
+/*  Create Account Form
+---------------------------------------------------------------*/
+#createAccountForm fieldset {
+	border: 0;
+	padding: 0;
+}
+
+#createAccountForm fieldset legend, .box-header, #createAccountForm label {
+	display: none;
+}
+
+#login-box .box .tab-content {
+	background: transparent;
+	border: none;
+	padding: 0;	
+}
+
+/*  Forgot Password Form
+---------------------------------------------------------------*/
+#forgotPasswordForm fieldset {
+	border: 0;
+	padding: 0;
+}
+
+#forgotPasswordForm fieldset legend, .box-header, #forgotPasswordForm label {
+	display: none;
+}
+
+#login-box .box .tab-content {
+	background: transparent;
+	border: none;
+	padding: 0;	
+}
+
+/*  Custom Box Shape 
+---------------------------------------------------------------*/
+.taped-bodyStyle {
+	/* Default style - No changes needed */	
+}
+
+/* Boxed */
+.boxed-bodyStyle div#login #login-box {
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+	margin-top: 1em;
+}
+.boxed-bodyStyle div#login-top-shadow,
+.boxed-bodyStyle div#login #login-box #login-box-footer,
+.boxed-bodyStyle div#login #login-bottom-shadow {
+	display: none;
+}
+div#login #login-box #login-box-header {
+	margin-bottom: 0;
+}
+.boxed-bodyStyle div#login #login-box #login-box-header h1 {
+	font-size: 1.8em;
+	margin-top: 0.5em;
+}
+.boxed-bodyStyle div#login #login-box #login-box-header {
+	border-bottom: none;
+}
+
+/* Transparent */
+.transparent-bodyStyle div#login #login-box {
+	background: transparent;
+}
+.transparent-bodyStyle div#login-top-shadow,
+.transparent-bodyStyle div#login #login-box #login-box-footer,
+.transparent-bodyStyle div#login #login-bottom-shadow {
+	display: none;
+}
+.transparent-bodyStyle div#login #login-box #login-box-header h1 {
+	font-size: 1.8em;
+}
+.transparent-bodyStyle div#login #login-box #login-box-header {
+	border-bottom: none;
+}

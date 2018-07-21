@@ -1,0 +1,15 @@
+/.idea
+/.vagrant
+/dist
+/bower_components
+/node_modules
+/vendor
+.yarnclean
+_db.php
+_license.php
+composer.lock
+package-lock.json
+package.box
+mbp.zip
+*.lock
+*.DS_Store

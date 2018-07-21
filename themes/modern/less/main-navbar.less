@@ -1,0 +1,220 @@
+&-mn-brand #main-navbar .navbar-inner .navbar-header {
+    .fts-bg(@bg, @gradStart, @gradEnd);
+}
+    
+&-mn-brand #main-navbar #main-menu-toggle {
+    color: @linkFontColor;
+    .fts-bg(@bg, @gradStart, @gradEnd);
+
+   .fa:before {
+        color: @linkFontColor;
+   }
+}
+
+
+&-mn #main-navbar {
+    .navbar-brand, 
+    .navbar-nav > li > a {
+        text-shadow: none;
+    }
+    .navbar-collapse {
+        border-top: 1px solid lighten(@bg, 6%);
+	    .fts-bg(@bg, @gradStart, @gradEnd);
+    }
+    
+    .navbar-toggle {
+        color: @linkFontColor;
+    }
+    .dropdown > a,
+    .dropdown-menu > li > a,
+    .nav > li > a {
+        color: lighten(@navbar-color, 50%);
+    }
+    
+    li + li,
+    .nav + .nav,
+    .nav + .right {
+        border-top: 1px solid lighten(@navbar-color, 6%);
+    }
+}
+
+// ************************************************************************* //
+//**   Desktops                                                            **//
+
+@media (min-width: @screen-tablet) {
+    
+    &-mn-brand #main-navbar #main-menu-toggle {
+        
+        // Navbar button
+        #main-menu-toggle {
+          .fts-bg(darken(@bg, 5%), darken(@gradStart, 5%), darken(@gradEnd, 5%));
+        }
+    }
+    
+  &-mn #main-navbar {
+
+    // Navbar header
+    //
+
+    .navbar-header {
+      .fts-bg(@bg, @gradStart, @gradEnd);
+    }
+
+    // Navbar collapse
+    //
+
+    .navbar-collapse {    
+      > div > .navbar-nav {
+        border-left: 1px solid darken(@navbar-color, 4%);
+        .box-shadow(1px 0 0 rgba(255, 255, 255, .03) inset);
+      }
+    }
+
+    .right > .navbar-nav > li {
+      border-left: 1px solid darken(@navbar-color, 4%);
+      border-right: none;
+      .box-shadow(1px 0 0 rgba(255, 255, 255, .03) inset);
+    }
+    .nav .open > a, 
+    .nav .open > a:hover, 
+    .nav .open > a:focus {
+        background: darken(@navbar-color, 4%);
+        border-bottom: 3px solid @header-color;
+    }
+
+    .navbar-nav > li {
+      border-right: 1px solid darken(@navbar-color, 4%);
+      .box-shadow(1px 0 0 rgba(255, 255, 255, .03));
+
+      > a {
+        color: lighten(@navbar-color, 50%);
+      }
+
+      > a:hover,
+      &.active > a,
+      &.dropdown.open > a {
+        background: darken(@navbar-color, 4%);
+        border-bottom: 3px solid @header-color;
+        color: #fff;
+      }
+    }
+
+    
+    // Navbar Items
+    //
+
+    li + li,
+    .nav + .nav,
+    .nav + .right {
+      border-top: none;
+    }
+
+
+    // Navbar dropdowns
+    //
+
+    .dropdown.open > a {
+      margin: 0;
+      border-top: none;
+    }
+
+    .dropdown-menu {
+      background: @navbar-color;
+      border: none;
+      border-top: 1px solid @header-color;
+      padding: 5px 0;
+
+      .divider {
+        background-color: darken(@navbar-color, 4%);
+      }
+
+      & > li > a {
+        color: #fff;
+
+        &:hover {
+          background: lighten(@navbar-color, 4%);
+        }
+      }
+    }
+
+
+    // Notifications widget
+    //
+
+    .widget-notifications {
+      a:hover {
+        color: #fff !important;
+      }
+
+      .notification,
+      .notifications-link {
+        border-color: darken(@navbar-color, 4%);
+        .box-shadow(0 1px 0 rgba(255, 255, 255, 0.05) inset);
+        .border-bottom-radius(3px);
+      }
+
+      .notification-description {
+        color: #888;
+      }
+
+      .notification-ago {
+        color: #666;
+      }
+
+      .notifications-link:hover {
+        background: lighten(@navbar-color, 6%);
+      }
+    }
+
+
+    // Alt messages widget
+    //
+
+    .widget-messages-alt {
+      a:hover {
+        color: #fff !important;
+      }
+
+      .message,
+      .messages-link {
+        border-color: darken(@navbar-color, 4%);
+        .box-shadow(0 1px 0 rgba(255, 255, 255, 0.05) inset);
+        .border-bottom-radius(3px);
+      }
+
+      .message-subject {
+        color: #bbb;
+      }
+
+      .message-description {
+        color: #666;
+
+        a {
+          color: #888;
+        }
+      }
+
+      .messages-link:hover {
+        background: lighten(@navbar-color, 6%);
+      }
+    }
+  }
+
+  .main-menu-right #main-navbar .navbar-header,
+  .mmc #main-navbar .navbar-header,
+  .no-main-menu #main-navbar .navbar-header {
+    background: @navbar-color;
+  }
+
+  .main-menu-right #main-navbar .navbar-header {
+    border-right: 1px solid darken(@navbar-color, 4%);
+  }
+}
+.navbar-inner li > a {
+	color: @linkFontColor;
+}
+
+.navbar-inner li a:hover, 
+.navbar-inner li.active a {
+	color: @linkFontColorHover;
+}

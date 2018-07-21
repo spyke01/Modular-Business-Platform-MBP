@@ -1,0 +1,32 @@
+body {
+	background: #fff;
+	padding-top: 0 !important;
+}
+header {
+	padding-left: 20px;	
+}
+.breadcrumb {
+	display: none;
+}
+.box:after, .box:before {
+	border: none;
+	position: relative;	
+}
+.box .box-header {
+	background: none;
+	border: none;
+	box-shadow: none;
+}
+.box .box-header .title, .box .box-header h3 {
+	color: #000;
+}
+.box .box-header h3 {
+    font-size: 20px;
+}
+.box .box-content {
+	padding: 0;
+	border: none;
+}
+.table {
+	clear: both;
+}
