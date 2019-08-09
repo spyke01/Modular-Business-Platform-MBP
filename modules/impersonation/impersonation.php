@@ -9,7 +9,7 @@
  *
  *
  ***************************************************************************
- * /
+ */
 class impersonation {
 	//====================================
 	// Basic Module information
@@ -96,14 +96,7 @@ class impersonation {
 	//====================================
 	// Prep Menus hook
 	//====================================
-	public function prepMenus() {
-		global $page, $impersonationUserMenuItems, $impersonationAdminMenuItems, $impersonationMenus;
-		$myFolder = "modules/$this->prefix/";
-	}
 
-	//===============================================================
-	// Check DB Settings hook
-	//===============================================================
 	public function checkDBSettings() {
 		global $impersonationUserMenuItems, $impersonationAdminMenuItems, $ftsdb;
 
@@ -132,19 +125,40 @@ class impersonation {
 
 		// Add icons if necessary
 		foreach ( array_merge( (array) $impersonationUserMenuItems, (array) $impersonationAdminMenuItems ) as $key => $menuItemArray ) {
-			$result = $ftsdb->update( DBTABLEPREFIX . 'menu_items', array(
-				'icon' => $menuItemArray['icon']
-			),
-				"link = :link", array(
-					":link" => $menuItemArray['link']
+			$result = $ftsdb->update( DBTABLEPREFIX . 'menu_items',
+				array(
+					'icon' => $menuItemArray['icon'],
+				),
+				"link = :link",
+				array(
+					":link" => $menuItemArray['link'],
 				)
 			);
 		}
 	}
 
+	//===============================================================
+	// Check DB Settings hook
+	//===============================================================
+
+	public function createDropdown( $arguments = array() ) {
+		extract( (array) $arguments ); // Extract our arguments into variables
+
+		$dropdown      = "";
+		$dropdownItems = $this->getDropdownArray( $type );
+		if ( is_array( $dropdownItems ) && count( $dropdownItems ) ) {
+			foreach ( $dropdownItems as $key => $value ) {
+				$dropdown .= "<option value=\"" . $key . "\"" . testSelected( $key, $currentSelection ) . ">" . $value . "</option>";
+			}
+		}
+
+		return $dropdown;
+	}
+
 	//====================================
 	// Get Dropdown Array hook
 	//====================================
+
 	public function getDropdownArray( $arguments = array() ) {
 		global $ftsdb;
 		extract( (array) $arguments ); // Extract our arguments into variables
@@ -158,9 +172,12 @@ class impersonation {
 			foreach ( $userLevels as $user_level => $name ) {
 				$usersInThisRole = array();
 
-				$result = $ftsdb->select( USERSDBTABLEPREFIX . "users", "user_level = :user_level ORDER BY last_name", array(
-					":user_level" => $user_level
-				), 'id, email_address, first_name, last_name' );
+				$result = $ftsdb->select( USERSDBTABLEPREFIX . "users",
+					"user_level = :user_level ORDER BY last_name",
+					array(
+						":user_level" => $user_level,
+					),
+					'id, email_address, first_name, last_name' );
 
 				if ( $result ) {
 					foreach ( $result as $row ) {
@@ -183,23 +200,7 @@ class impersonation {
 	//====================================
 	// Create Dropdown hook
 	//====================================
-	public function createDropdown( $arguments = array() ) {
-		extract( (array) $arguments ); // Extract our arguments into variables
 
-		$dropdown      = "";
-		$dropdownItems = $this->getDropdownArray( $type );
-		if ( is_array( $dropdownItems ) && count( $dropdownItems ) ) {
-			foreach ( $dropdownItems as $key => $value ) {
-				$dropdown .= "<option value=\"" . $key . "\"" . testSelected( $key, $currentSelection ) . ">" . $value . "</option>";
-			}
-		}
-
-		return $dropdown;
-	}
-
-	//====================================
-	// Show Page hook
-	//====================================
 	public function showPage( $arguments = array() ) {
 		global $page, $impersonationMenus, $actual_action, $actual_id, $actual_startsWith, $menuvar;
 
@@ -220,7 +221,7 @@ class impersonation {
 				$page_content .= '<meta http-equiv="refresh" content="5;url=' . SITE_URL . '">';
 			} elseif ( user_access( 'impersonation_access' ) ) {
 				if ( isset( $_REQUEST['impersonate_id'] ) ) {
-					/* 
+					/*
 						We pass an id which looks like prefixID
 						We then need to call any impersonateUser methods
 						These will handle the permission checks needed
@@ -264,8 +265,18 @@ class impersonation {
 	}
 
 	//====================================
+	// Show Page hook
+	//====================================
+
+	public function prepMenus() {
+		global $page, $impersonationUserMenuItems, $impersonationAdminMenuItems, $impersonationMenus;
+		$myFolder = "modules/$this->prefix/";
+	}
+
+	//====================================
 	// Handle Page Result hook
 	//====================================
+
 	public function handlePageResult( $arguments ) {
 		global $page, $actual_action, $actual_id, $impersonationMenus;
 
@@ -305,12 +316,13 @@ class impersonation {
 		$content = "";
 
 		// Let modules alter our system settings tab fields	
-		$formFields = apply_filters( 'form_fields_impersonation_settings', array(
-			'ftsmbp_impersonation_serial' => array(
-				'text' => 'Serial',
-				'type' => 'text',
-			),
-		) );
+		$formFields = apply_filters( 'form_fields_impersonation_settings',
+			array(
+				'ftsmbp_impersonation_serial' => array(
+					'text' => 'Serial',
+					'type' => 'text',
+				),
+			) );
 
 		if ( $section == 'tabs' ) {
 			$content = '
