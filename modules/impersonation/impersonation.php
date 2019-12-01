@@ -99,9 +99,9 @@ class impersonation {
 	public function checkDBSettings() {
 		global $impersonationUserMenuItems, $impersonationAdminMenuItems, $ftsdb;
 
-		$defaultPermissions = array(
+		$defaultPermissions = [
 			'impersonation_access' => '2,',
-		);
+		];
 
 		if ( count( $defaultPermissions ) ) {
 			foreach ( $defaultPermissions as $name => $role_ids ) {
@@ -111,8 +111,9 @@ class impersonation {
 			}
 		}
 
-		$defaultSettings = array(//'ftsmbp_fts_useClientAsOwner' => '1'
-		);
+		$defaultSettings = [
+			//'ftsmbp_fts_useClientAsOwner' => '1'
+		];
 
 		if ( count( $defaultSettings ) ) {
 			foreach ( $defaultSettings as $name => $value ) {
@@ -125,13 +126,13 @@ class impersonation {
 		// Add icons if necessary
 		foreach ( array_merge( (array) $impersonationUserMenuItems, (array) $impersonationAdminMenuItems ) as $key => $menuItemArray ) {
 			$result = $ftsdb->update( DBTABLEPREFIX . 'menu_items',
-				array(
+				[
 					'icon' => $menuItemArray['icon'],
-				),
+				],
 				"link = :link",
-				array(
+				[
 					":link" => $menuItemArray['link'],
-				)
+				]
 			);
 		}
 	}
@@ -140,7 +141,7 @@ class impersonation {
 	// Check DB Settings hook
 	//===============================================================
 
-	public function createDropdown( $arguments = array() ) {
+	public function createDropdown( $arguments = [] ) {
 		extract( (array) $arguments ); // Extract our arguments into variables
 
 		$dropdown      = "";
@@ -158,24 +159,24 @@ class impersonation {
 	// Get Dropdown Array hook
 	//====================================
 
-	public function getDropdownArray( $arguments = array() ) {
+	public function getDropdownArray( $arguments = [] ) {
 		global $ftsdb;
 		extract( (array) $arguments ); // Extract our arguments into variables
 
-		$returnArray = array();
+		$returnArray = [];
 
 		if ( $type == "impersonate_ids" ) {
 			$userLevels      = getDropdownArray( 'userlevel' );
-			$impersonate_ids = array();
+			$impersonate_ids = [];
 
 			foreach ( $userLevels as $user_level => $name ) {
-				$usersInThisRole = array();
+				$usersInThisRole = [];
 
 				$result = $ftsdb->select( USERSDBTABLEPREFIX . "users",
 					"user_level = :user_level ORDER BY last_name",
-					array(
+					[
 						":user_level" => $user_level,
-					),
+					],
 					'id, email_address, first_name, last_name' );
 
 				if ( $result ) {
@@ -200,7 +201,7 @@ class impersonation {
 	// Create Dropdown hook
 	//====================================
 
-	public function showPage( $arguments = array() ) {
+	public function showPage( $arguments = [] ) {
 		global $page, $impersonationMenus, $actual_action, $actual_id, $actual_startsWith, $menuvar;
 
 		extract( (array) $arguments ); // Extract our arguments into variables
@@ -292,7 +293,7 @@ class impersonation {
 	//====================================
 	// Show Page hook
 	//====================================
-	public function handleAJAX( $arguments = array() ) {
+	public function handleAJAX( $arguments = [] ) {
 		global $ftsdb, $page, $mbp_config, $impersonationMenus, $actual_id, $actual_action, $actual_value,
 		       $actual_type, $actual_showButtons, $actual_showClient, $actual_prefix, $item, $table;
 
@@ -308,7 +309,7 @@ class impersonation {
 	// ---
 	// Show Page hook
 	//====================================
-	public function settingsPage( $arguments = array() ) {
+	public function settingsPage( $arguments = [] ) {
 		global $mbp_config;
 		extract( (array) $arguments ); // Extract our arguments into variables
 
@@ -316,12 +317,12 @@ class impersonation {
 
 		// Let modules alter our system settings tab fields	
 		$formFields = apply_filters( 'form_fields_impersonation_settings',
-			array(
-				'ftsmbp_impersonation_serial' => array(
+			[
+				'ftsmbp_impersonation_serial' => [
 					'text' => 'Serial',
 					'type' => 'text',
-				),
-			) );
+				],
+			] );
 
 		if ( $section == 'tabs' ) {
 			$content = '
@@ -341,7 +342,7 @@ class impersonation {
 	// ---
 	// Handle Page Result hook
 	//====================================
-	public function settingsPage_submit( $arguments = array() ) {
+	public function settingsPage_submit( $arguments = [] ) {
 		extract( (array) $arguments ); // Extract our arguments into variables
 
 		// posted variables are in $'content
@@ -354,7 +355,7 @@ class impersonation {
 	// ---
 	// Show Page hook
 	//====================================
-	public function graphsPage( $arguments = array() ) {
+	public function graphsPage( $arguments = [] ) {
 		global $page, $menuvar, $impersonationMenus;
 		extract( (array) $arguments ); // Extract our arguments into variables
 
@@ -368,7 +369,7 @@ class impersonation {
 	// ---
 	// Show Page hook
 	//====================================
-	public function reportsPage( $arguments = array() ) {
+	public function reportsPage( $arguments = [] ) {
 		global $menuvar;
 
 		extract( (array) $arguments ); // Extract our arguments into variables

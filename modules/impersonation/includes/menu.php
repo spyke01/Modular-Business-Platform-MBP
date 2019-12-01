@@ -9,13 +9,12 @@
  ***************************************************************************/
 
 
-
-$impersonationUserMenuItems  = array();
-$impersonationAdminMenuItems = array();
-$impersonationMenus          = array(
-	'IMPERSONATE' => array(
+$impersonationUserMenuItems  = [];
+$impersonationAdminMenuItems = [];
+$impersonationMenus          = [
+	'IMPERSONATE' => [
 		'text'        => 'Impersonate',
 		'link'        => 'index.php?p=module&prefix=impersonation&module_page=impersonate',
-		'permissions' => '2'
-	),
-);
+		'permissions' => '2',
+	],
+];

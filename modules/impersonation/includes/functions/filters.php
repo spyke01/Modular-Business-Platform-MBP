@@ -10,5 +10,4 @@
  ***************************************************************************/
 
 
-
 add_filter( 'additional_top_right_nav_items', 'returnInlineImpersonationForm' );

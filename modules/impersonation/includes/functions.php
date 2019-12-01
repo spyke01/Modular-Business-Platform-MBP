@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 
-
 include( BASEPATH . '/modules/impersonation/includes/functions/users.php' );
 
 // Utilizes calls inside the files above

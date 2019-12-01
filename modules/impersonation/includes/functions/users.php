@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 
-
 /**
  * Returns the string used for user_access checks for impersonation.
  *
@@ -48,9 +47,11 @@ function perform_impersonation( $impersonationID = '' ) {
 	if ( $impersonationPrefix == $myImpersonationPrefix ) {
 
 		// Does the user exist?
-		$result = $ftsdb->select( USERSDBTABLEPREFIX . "users", "id = :id", array(
-			":id" => $userID,
-		) );
+		$result = $ftsdb->select( USERSDBTABLEPREFIX . "users",
+			"id = :id",
+			[
+				":id" => $userID,
+			] );
 		if ( $result && count( $result ) == 1 ) {
 			$row = $result[0];
 
@@ -114,13 +115,14 @@ function perform_stop_impersonation() {
 function returnImpersonationForm() {
 	global $impersonationMenus, $mbp_config;
 
-	$formFields = apply_filters( 'form_fields_impersonate_impersonate_users', array(
-		'impersonate_id' => array(
-			'text'    => 'Account to Impersonate',
-			'type'    => 'select',
-			'options' => getDropdownArray( 'impersonate_ids' ),
-		),
-	) );
+	$formFields = apply_filters( 'form_fields_impersonate_impersonate_users',
+		[
+			'impersonate_id' => [
+				'text'    => 'Account to Impersonate',
+				'type'    => 'select',
+				'options' => getDropdownArray( 'impersonate_ids' ),
+			],
+		] );
 
 	return makeForm( 'impersonateUsers', il( $impersonationMenus['IMPERSONATE']['link'] ), '<i class="glyphicon glyphicon-eye-open"></i> Impersonate Users', 'Impersonate', $formFields );
 }
@@ -150,17 +152,18 @@ function returnInlineImpersonationForm() {
 		// Print the impersonation form
 		$page->setTemplateVar( "JQueryReadyScript", $page->getTemplateVar( "JQueryReadyScript" ) . returnImpersonationFormJQuery() );
 
-		$formFields = apply_filters( 'form_fields_impersonate_impersonate_users', array(
-			'impersonate_id' => array(
-				'name'      => 'impersonate_id',
-				'text'      => 'Account to Impersonate',
-				'type'      => 'select',
-				'options'   => getDropdownArray( 'impersonate_ids' ),
-				'showLabel' => 0,
-				'class'     => 'required',
-				'required'  => true,
-			),
-		) );
+		$formFields = apply_filters( 'form_fields_impersonate_impersonate_users',
+			[
+				'impersonate_id' => [
+					'name'      => 'impersonate_id',
+					'text'      => 'Account to Impersonate',
+					'type'      => 'select',
+					'options'   => getDropdownArray( 'impersonate_ids' ),
+					'showLabel' => 0,
+					'class'     => 'required',
+					'required'  => true,
+				],
+			] );
 		$formItems  = '';
 
 		foreach ( $formFields as $name => $formItem ) {

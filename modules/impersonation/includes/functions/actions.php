@@ -10,5 +10,4 @@
  ***************************************************************************/
 
 
-
 add_action( 'perform_impersonation', 'perform_impersonation', 1, 1 );
