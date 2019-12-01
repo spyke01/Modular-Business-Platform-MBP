@@ -26,9 +26,9 @@ $available_widgets = $available_widgetAreas = $modules = $mbp_filter = $merged_f
 global $mbp_config, $ftsdb;
 
 // Do our main includes
-include(BASEPATH . '/includes/classes/ftsdb.php');
 include(BASEPATH . '/includes/classes/pageclass.php');
 include(BASEPATH . '/includes/classes/tableclass.php');
+include( BASEPATH . '/includes/classes/FTSDB.php' );
 include( BASEPATH . '/_license.php' );
 include( BASEPATH . '/_db.php' );
 include( BASEPATH . '/includes/classes/file-functions.php' );
