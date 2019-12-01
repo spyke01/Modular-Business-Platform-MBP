@@ -55,8 +55,8 @@
                 </div> <!-- /row -->
             </div> <!-- /installation-container -->
             <footer>
-                Copyright &copy; 2009 - <?php echo date('Y'); ?> Paden Clayton
-                <span class="pull-right">Powered By: <a href="http://www.fasttracksites.com">Paden Clayton Installer</a></span>
+                Copyright &copy; 2009 - <?php echo date( 'Y' ); ?> Paden Clayton
+                <span class="pull-right">Powered By: <a href="https://github.com/spyke01/Modular-Business-Platform-MBP">Paden Clayton Installer</a></span>
             </footer>
         </div> <!-- /container -->
         <!--Javascripts Begin-->

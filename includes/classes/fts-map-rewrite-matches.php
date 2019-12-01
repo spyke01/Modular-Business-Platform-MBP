@@ -4,7 +4,6 @@
  *                            -------------------
  *   begin                : Tuseday, October 31, 2008
  *   copyright            : (C) 2008 Paden Clayton
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/

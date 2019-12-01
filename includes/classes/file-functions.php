@@ -4,8 +4,6 @@
  *                            -------------------
  *   begin                : Monday, Aug 20, 2012
  *   copyright            : (C) 2012 Paden Clayton
- *   website              : http://www.fasttracksites.com
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/

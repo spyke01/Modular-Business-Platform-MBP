@@ -4,8 +4,6 @@
  *                            -------------------
  *   begin                : Tuesday, August 15, 2006
  *   copyright            : (C) 2006 Paden Clayton
- *   website              : http://www.fasttracksites.com
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/

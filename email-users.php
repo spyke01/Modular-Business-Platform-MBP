@@ -4,7 +4,6 @@
  *                            -------------------
  *   begin                : Tuseday, July 10, 2014
  *   copyright            : (C) 2006 Paden Clayton
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/

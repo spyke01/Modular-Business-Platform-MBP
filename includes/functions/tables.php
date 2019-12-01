@@ -4,7 +4,6 @@
  *                            -------------------
  *   begin                : Tuseday, March 25, 2014
  *   copyright            : (C) 2014 Paden Clayton
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/

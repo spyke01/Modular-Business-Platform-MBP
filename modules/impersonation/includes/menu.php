@@ -4,7 +4,6 @@
  *                            -------------------
  *   begin                : Monday, December 20, 2016
  *   copyright            : (C) 2016 Paden Clayton
- *   email                : sales@fasttracksites.com
  *
  *
  ***************************************************************************/
