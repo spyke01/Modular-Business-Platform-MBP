@@ -66,7 +66,7 @@
         <script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
         <script src="themes/modern/jui/jquery-ui.custom.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.min.js"></script>
         <script src="//use.fontawesome.com/e30b1ab369.js"></script>
 
         <script src="<?php echo SITE_URL; ?>/node_modules/bootbox.js/bootbox.min.js"></script>

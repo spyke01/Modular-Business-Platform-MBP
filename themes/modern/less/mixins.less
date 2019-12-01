@@ -1,7 +1,7 @@
-.buildTheme() {	
-    @import './main-menu.less';
-    @import './main-navbar.less';
-    @import './content.less';
+.buildTheme() {
+  @import './main-menu.less';
+  @import './main-navbar.less';
+  @import './content.less';
 
   // Navbar icon buttons
   .nav-icon-btn-theme(@primary-color);
@@ -42,15 +42,17 @@
   // Forms theme
   .forms-theme(@primary-color);
 }
-.fts-bg(@bgColor, @gradStart, @gradEnd) {	
-	background-color: @bgColor;
-	background-image: -moz-linear-gradient(center top , @gradStart, @gradEnd);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gradStart), to(@gradEnd));
-	background-image: -webkit-linear-gradient(center top, @gradStart, @gradEnd);
-	background-image: -o-linear-gradient(center top, @gradStart, @gradEnd);
-	background-image: linear-gradient(to bottom, @gradStart, @gradEnd);
-	background-repeat: repeat-x;
+
+.fts-bg(@bgColor, @gradStart, @gradEnd) {
+  background-color: @bgColor;
+  background-image: -moz-linear-gradient(center top, @gradStart, @gradEnd);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@gradStart), to(@gradEnd));
+  background-image: -webkit-linear-gradient(center top, @gradStart, @gradEnd);
+  background-image: -o-linear-gradient(center top, @gradStart, @gradEnd);
+  background-image: linear-gradient(to bottom, @gradStart, @gradEnd);
+  background-repeat: repeat-x;
 }
+
 //
 // Mixins
 // --------------------------------------------------
@@ -80,14 +82,14 @@
 //
 .pixel-gradient(@fallback: #888; @start: #000; @end: #fff; @start-percent: 0%; @end-percent: 100%) {
   background: @fallback;
-  background-image: -webkit-linear-gradient(top, @start @start-percent, @end @end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: -webkit-linear-gradient(top, @start @start-percent, @end @end-percent); // Safari 5.1-6, Chrome 10+
   background-image: linear-gradient(to bottom, @start @start-percent, @end @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
 }
 
 .pixel-gradient-forced(@fallback: #888; @start: #000; @end: #fff; @start-percent: 0%; @end-percent: 100%) {
   background: @fallback !important;
-  background-image: ~"-webkit-linear-gradient(top, @{start} @{start-percent}, @{end} @{end-percent})" !important;  // Safari 5.1-6, Chrome 10+
+  background-image: ~"-webkit-linear-gradient(top, @{start} @{start-percent}, @{end} @{end-percent})" !important; // Safari 5.1-6, Chrome 10+
   background-image: ~"linear-gradient(to bottom, @{start} @{start-percent}, @{end} @{end-percent})" !important; // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
   background-repeat: repeat-x;
 }
@@ -151,7 +153,7 @@
   &.label-tag {
     border: 1px solid @color;
 
-    &:before{
+    &:before {
       border-color: transparent @color transparent transparent;
     }
 
@@ -169,8 +171,8 @@
 
     // Right-to-left direction
     //
-    
-    .right-to-left &:before{
+
+    .right-to-left &:before {
       border-color: transparent transparent transparent @color;
     }
 
@@ -180,7 +182,7 @@
     }
 
     .ie8 .right-to-left &:before,
-    .ie9 .right-to-left &:before{
+    .ie9 .right-to-left &:before {
       border-color: transparent @color transparent transparent;
     }
 
@@ -197,7 +199,7 @@
 //
 .pixel-button(@color; @gradient: 6%; @hover: 3%; @border: 0%; @font-color: #fff; @gradient-offset: 2%) {
   color: @font-color;
-  
+
   &,
   &:focus {
     border-color: darken(@color, 5% + @border);
@@ -291,11 +293,11 @@
 // Striped progress bar mixin
 //
 .pixel-progress-striped(@color) {
-  background-color: darken(@color,0%);
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,10%)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,10%)), color-stop(.75, rgba(255,255,255,10%)), color-stop(.75, transparent), to(transparent));
-  background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,10%) 25%, transparent 25%, transparent 50%, rgba(255,255,255,10%) 50%, rgba(255,255,255,10%) 75%, transparent 75%, transparent);
-  background-image: -moz-linear-gradient(45deg, rgba(255,255,255,10%) 25%, transparent 25%, transparent 50%, rgba(255,255,255,10%) 50%, rgba(255,255,255,10%) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255,255,255,10%) 25%, transparent 25%, transparent 50%, rgba(255,255,255,10%) 50%, rgba(255,255,255,10%) 75%, transparent 75%, transparent);
+  background-color: darken(@color, 0%);
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, 10%)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, 10%)), color-stop(.75, rgba(255, 255, 255, 10%)), color-stop(.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 10%) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 10%) 50%, rgba(255, 255, 255, 10%) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 10%) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 10%) 50%, rgba(255, 255, 255, 10%) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 10%) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 10%) 50%, rgba(255, 255, 255, 10%) 75%, transparent 75%, transparent);
   background-size: 10px 10px;
 }
 
@@ -315,10 +317,10 @@
   background: none;
   border-color: darken(@color, 10%);
   background-color: @color;
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,@stripes-opacity)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,@stripes-opacity)), color-stop(.75, rgba(255,255,255,@stripes-opacity)), color-stop(.75, transparent), to(transparent));
-  background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
-  background-image: -moz-linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, @stripes-opacity)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, @stripes-opacity)), color-stop(.75, rgba(255, 255, 255, @stripes-opacity)), color-stop(.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
   background-size: 20px 20px;
 }
 
@@ -327,9 +329,9 @@
 .pixel-tabs(@color, @text-color) {
   // Tabs
   > li > a {
-      background: darken(@color, 10%);
-      color: @text-color;
-      border-color: rgba(0, 0, 0, 0.05);
+    background: darken(@color, 10%);
+    color: @text-color;
+    border-color: rgba(0, 0, 0, 0.05);
   }
   > li.active > a {
     &,
@@ -412,8 +414,8 @@
     &:before {
       border-bottom-color: darken(@border-color, 10%);
     }
-    
-    &:after{
+
+    &:after {
       border-bottom-color: lighten(@color, 1%);
     }
   }
@@ -421,6 +423,7 @@
   .form-control {
     border-color: @input-border-color;
     .box-shadow(none);
+
     &:focus,
     &.focus {
       border-color: darken(@input-border-color, 10%) !important;
@@ -457,10 +460,10 @@
   .pixel-form-state-base(@color, @font-color: #fff, @border-color: darken(@color, 10%), @input-border-color: @color);
   .help-block {
     background: @color;
-    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,@stripes-opacity)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,@stripes-opacity)), color-stop(.75, rgba(255,255,255,@stripes-opacity)), color-stop(.75, transparent), to(transparent));
-    background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
-    background-image: linear-gradient(45deg, rgba(255,255,255,@stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@stripes-opacity) 50%, rgba(255,255,255,@stripes-opacity) 75%, transparent 75%, transparent);
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, @stripes-opacity)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, @stripes-opacity)), color-stop(.75, rgba(255, 255, 255, @stripes-opacity)), color-stop(.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, @stripes-opacity) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, @stripes-opacity) 50%, rgba(255, 255, 255, @stripes-opacity) 75%, transparent 75%, transparent);
     background-size: 20px 20px;
   }
 }
@@ -582,10 +585,21 @@
     border-color: @border-color;
     color: @font-color;
 
-    &.top .arrow:after { border-top-color: @border-color; }
-    &.bottom .arrow:after { border-bottom-color: @border-color; }
-    &.left .arrow:after { border-left-color: @border-color; }
-    &.right .arrow:after { border-right-color: @border-color; }
+    &.top .arrow:after {
+      border-top-color: @border-color;
+    }
+
+    &.bottom .arrow:after {
+      border-bottom-color: @border-color;
+    }
+
+    &.left .arrow:after {
+      border-left-color: @border-color;
+    }
+
+    &.right .arrow:after {
+      border-right-color: @border-color;
+    }
   }
 }
 
@@ -609,17 +623,28 @@
       border-bottom-width: 2px;
     }
 
-    &.top .arrow:after { border-top-color: @color; }
-    &.bottom .arrow:after { border-bottom-color: @color; }
-    &.left .arrow:after { border-left-color: @color; }
-    &.right .arrow:after { border-right-color: @color; }
+    &.top .arrow:after {
+      border-top-color: @color;
+    }
+
+    &.bottom .arrow:after {
+      border-bottom-color: @color;
+    }
+
+    &.left .arrow:after {
+      border-left-color: @color;
+    }
+
+    &.right .arrow:after {
+      border-right-color: @color;
+    }
   }
 }
 
 
 // Tooltip states mixin
 //
-.pixel-tooltip-state(@color){
+.pixel-tooltip-state(@color) {
   .tooltip-inner {
     background-color: @color;
   }
@@ -756,7 +781,7 @@
 //
 .nav-icon-btn-theme(@color) {
   .nav-icon-btn.nav-icon-btn-primary {
-    
+
     .nav-icon-btn-state(@color);
   }
 }
@@ -779,7 +804,7 @@
   }
 
   &.right-to-left .label.label-primary.label-tag {
-    &:before{
+    &:before {
       border-color: transparent transparent transparent @color;
     }
 
@@ -850,23 +875,25 @@
 //
 .tabs-theme(@color, @text-color) {
   .nav-tabs {
-      > li > a {
-          background: darken(@color, 10%);
-          color: @text-color;
-          border-color: rgba(0, 0, 0, 0.05);
+    > li > a {
+      background: darken(@color, 10%);
+      color: @text-color;
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+
+    > li.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @text-color;
+        background: lighten(@color, 10%);
+        border-bottom: 2px solid darken(@color, 5%);
       }
-      > li.active > a {
-        &,
-        &:hover,
-        &:focus {
-          color: @text-color;
-          background: lighten(@color, 10%);
-          border-bottom: 2px solid darken(@color, 5%);
-        }
-      }
-      .nav-tabs.nav-justified > .active > a {
-        border-bottom-color: darken(@color, 5%);
-      }
+    }
+
+    .nav-tabs.nav-justified > .active > a {
+      border-bottom-color: darken(@color, 5%);
+    }
   }
 }
 
@@ -918,7 +945,7 @@
     > li > a:hover {
       border-color: @color;
     }
-    
+
     > li.active > a,
     > li.active > a:hover,
     > li.active > a:focus,
@@ -929,7 +956,7 @@
   }
 
   // Pager
-  .pager {  
+  .pager {
     li > a:hover {
       border-color: @color;
     }
@@ -943,7 +970,7 @@
   a.list-group-item.active {
     background: @color;
     border-color: @color;
-    
+
     .list-group-item-text {
       color: lighten(@color, 40%);
     }
@@ -967,11 +994,11 @@
     border-color: @color;
   }
 
-  .gt-ie8 & input[type="checkbox"].px  + .lbl:after {
+  .gt-ie8 & input[type="checkbox"].px + .lbl:after {
     color: @color;
   }
 
-  .gt-ie8 & input[type="radio"].px  + .lbl:after {
+  .gt-ie8 & input[type="radio"].px + .lbl:after {
     background: @color;
   }
 
@@ -1046,6 +1073,7 @@
   border-color: darken(@color, 6%);
   .pixel-progress-striped(@color);
 }
+
 .ui-progressbar-theme(@color) {
   .ui-progressbar-value {
     .ui-progressbar-color(@color);
@@ -1055,8 +1083,8 @@
 // Tabs
 .ui-tabs-theme(@color) {
   .nav-tabs > li > a {
-      color: #fff;
-      border-color: darken(@color, 5%);
+    color: #fff;
+    border-color: darken(@color, 5%);
   }
   .ui-tabs-nav > .ui-tabs-active > a {
     &,
@@ -1109,6 +1137,7 @@
   }
 
 }
+
 .select2-theme(@color) {
   .select2-drop-active,
   .select2-container-multi.select2-container-active .select2-choices,
@@ -1150,6 +1179,7 @@
     background: @color !important;
   }
 }
+
 .switcher-theme(@color) {
   .switcher-primary {
     .switcher-color(@color);
@@ -1168,12 +1198,14 @@
       &.selected.disabled:hover {
         background: @color;
       }
+
       &.active,
       &.active:hover,
       &.active.disabled,
       &.active.disabled:hover {
         background: @color;
       }
+
       span {
         &.active,
         &.active:hover,
@@ -1187,6 +1219,7 @@
     thead {
       tr {
         background: darken(desaturate(@color, 20%), 5%);
+
         &:first-child {
           background: @color !important;
           border-bottom-color: @bs-datepicker-border-color !important;
@@ -1197,9 +1230,11 @@
       th.next {
         background: @color;
       }
+
       th.prev {
         border-color: @bs-datepicker-border-color;
       }
+
       th.next {
         border-color: @bs-datepicker-border-color;
       }
@@ -1208,6 +1243,7 @@
     > .datepicker-days thead tr:first-child th.cw + .prev {
       border-color: @bs-datepicker-border-color;
     }
+
     > .datepicker-days thead tr:last-child th.cw + th {
       border-color: @bs-datepicker-border-color;
     }
@@ -1253,6 +1289,7 @@
     border-color: darken(desaturate(@color, 15%), 12%) !important;
   }
 }
+
 .data-table-theme(@color) {
   .table-primary {
     .DT-color(@color);

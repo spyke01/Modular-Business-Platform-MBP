@@ -2,12 +2,14 @@
   // Body/Menu background
   background-color: @menu-color;
 }
+
 &-mm-bg {
   #main-menu .mm-dropdown > ul,
   .mmc-dropdown-open-ul {
     background: lighten(@menu-color, 3%);
   }
 }
+
 &-mm-bg #main-menu {
   .navigation a,
   .mmc-dropdown-open-ul a {
@@ -29,11 +31,13 @@
     }
   }
 }
+
 &-mm-titles #main-menu {
-    li.nav-header {
-        .fts-bg(@bg, @gradStart, @gradEnd);
-    	color: @navHeaderFontColor;
-    }
+  li.nav-header {
+    .fts-bg(@bg, @gradStart, @gradEnd);
+    color: @navHeaderFontColor;
+  }
+
   .navigation a,
   .mmc-dropdown-open-ul a {
     &:after {
@@ -75,7 +79,7 @@
   .mmc-dropdown-open {
     > a {
       background: darken(@header-color, 5%) !important;
-      
+
       &,
       .menu-icon {
         color: @linkFontColor !important;

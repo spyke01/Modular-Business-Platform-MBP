@@ -1,6 +1,6 @@
 
-#upload{
-    
+#upload {
+
 }
 
 #drop {
@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-#drop a{
+#drop a {
     width: 105px;
     left: 40%;
     top: 55px;
@@ -20,12 +20,12 @@
     position: absolute;
 }
 
-#drop input{
-    display:none;
+#drop input {
+    display: none;
 }
 
-#upload-msg{
-	list-style-type:none;
-	padding-left: 0px;
-	margin-left: 0px;
+#upload-msg {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 0px;
 }
