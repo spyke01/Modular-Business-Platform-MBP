@@ -1,4 +1,4 @@
-<?php 
+<?php
 /***************************************************************************
  *                               dashboard.php
  *                            -------------------
@@ -9,11 +9,10 @@
  ***************************************************************************/
 
 
- 
 $page_content = $dashboard_alerts = $JQueryReadyScripts = '';
-		
+
 // Show the new primary theme notice
-if ( user_access('view_theme_update_notice') && get_config_value('shown_theme_update_notice') == 0 && $mbp_config['ftsmbp_theme'] != 'modern' ) {
+if ( user_access( 'view_theme_update_notice' ) && get_config_value( 'shown_theme_update_notice' ) == 0 && $mbp_config['ftsmbp_theme'] != 'modern' ) {
 	$dashboard_alerts .= '
 		<div id="themeUpdateNotice" class="jumbotron">
 			<h1>Update Your Look</h1>
@@ -29,15 +28,15 @@ if ( user_access('view_theme_update_notice') && get_config_value('shown_theme_up
 			</ul>
 			<p><a href="' . il( $menuvar['THEMES'] . '&amp;action=change_theme&amp;theme=modern' ) . '" class="btn btn-success btn-lg" role="button">Check it out!</a> <a class="btn btn-default btn-lg" role="button">I like the old style.</a></p>
 		</div>';
-		
+
 	$JQueryReadyScripts .= "
 		$('#themeUpdateNotice a.btn').click(function(){
 	        $.get(SITE_URL + '/ajax.php?action=showedThemeUpdateNotice');  
 	    });";
 }
-	
+
 // Show the application tour	
-if ( user_access('view_tour') && get_config_value('shown_tour') == 0 ) {
+if ( user_access( 'view_tour' ) && get_config_value( 'shown_tour' ) == 0 ) {
 	$dashboard_alerts .= '
 		<div id="tour" class="jumbotron">
 			<h1>Your Business, Your Platform, Your Way</h1>
@@ -47,7 +46,7 @@ if ( user_access('view_tour') && get_config_value('shown_tour') == 0 ) {
 				<a href="https://youtu.be/RgZ36FTpHcU" role="button" class="btn btn-success btn-lg" target="_blank">Watch our Training Video</a>
 			</p>
 		</div>';
-		
+
 	$JQueryReadyScripts .= "
 		$('#startTourButton').click(function(){
 	        bootstro.start('', {
@@ -64,24 +63,28 @@ if ( user_access('view_tour') && get_config_value('shown_tour') == 0 ) {
 	        });    
 	    });";
 }
-	
+
 // Show the update box
-if ( user_access('perform_update') ) {	
-	$dashboard_alerts .= version_functions('checkForExpiredLicense');
-	$dashboard_alerts .= version_functions('checkForUpdates');
+if ( user_access( 'perform_update' ) ) {
+	$dashboard_alerts .= version_functions( 'checkForExpiredLicense' );
+	$dashboard_alerts .= version_functions( 'checkForUpdates' );
 }
 
 // Allow us to add additional dashboard alerts
 $page_content .= apply_filters( 'dashboard_alerts', $dashboard_alerts );
 
 // Show main dashboard items
-$dashboardItems = apply_filters( 'dashboard_text', get_config_value('ftsmbp_content_dashboard') );
-$dashboardItems .= callModuleHook('', 'dashboardPage', array(
-	'section' => 'content'
-));	
-$dashboardItemJQuery .= callModuleHook('', 'dashboardPage', array(
-	'section' => 'jQuery'
-));	
+$dashboardItems      = apply_filters( 'dashboard_text', get_config_value( 'ftsmbp_content_dashboard' ) );
+$dashboardItems      .= callModuleHook( '',
+	'dashboardPage',
+	[
+		'section' => 'content',
+	] );
+$dashboardItemJQuery .= callModuleHook( '',
+	'dashboardPage',
+	[
+		'section' => 'jQuery',
+	] );
 
 $page_content .= '
 		<div id="dashboard" class="bootstro box">
@@ -95,7 +98,7 @@ $page_content .= '
 
 // Handle our JQuery needs
 $JQueryReadyScripts .= $dashboardItemJQuery;
-if ( user_access('perform_update') && showUpdatePopup() ) {
+if ( user_access( 'perform_update' ) && showUpdatePopup() ) {
 	$JQueryReadyScripts .= "
 		$.get(SITE_URL + '/ajax.php?action=showUpdateDetails', function(updatesText) {
 			bootbox.dialog({
@@ -110,5 +113,5 @@ if ( user_access('perform_update') && showUpdatePopup() ) {
 		});";
 }
 
-$page->setTemplateVar('PageContent', $page_content);
-$page->setTemplateVar("JQueryReadyScript", $JQueryReadyScripts);
+$page->setTemplateVar( 'PageContent', $page_content );
+$page->setTemplateVar( "JQueryReadyScript", $JQueryReadyScripts );

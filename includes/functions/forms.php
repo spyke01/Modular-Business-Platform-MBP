@@ -10,28 +10,25 @@
  ***************************************************************************/
 
 
-
-
 /**
  * Returns a form based on the values passed.
  *
  * @access public
  *
- * @param mixed $id
- * @param mixed $action
- * @param mixed $title
- * @param mixed $buttonText
- * @param array $formFields (default: array())
- * @param array $formData (default: array())
- * @param int $isAJAX (default: 0)
- * @param int $showClearButton (default: 0)
- * @param string $enctype (default: '')
- * @param array $extraOptions (default: array())
+ * @param mixed  $id
+ * @param mixed  $action
+ * @param mixed  $title
+ * @param mixed  $buttonText
+ * @param array  $formFields      (default: [])
+ * @param array  $formData        (default: [])
+ * @param int    $isAJAX          (default: 0)
+ * @param int    $showClearButton (default: 0)
+ * @param string $enctype         (default: '')
+ * @param array  $extraOptions    (default: [])
  *
  * @return string                                        The actual form HTML
  */
-function makeForm( $id, $action, $title, $buttonText, $formFields = array(), $formData = array(), $isAJAX = 0, $showClearButton = 0, $enctype = '', $extraOptions = array() ) {
-	global $menuvar, $mbp_config;
+function makeForm( $id, $action, $title, $buttonText, $formFields = [], $formData = [], $isAJAX = 0, $showClearButton = 0, $enctype = '', $extraOptions = [] ) {
 	$tabLinks = $tabHolders = $extraPrimaryButtonClasses = $extraButtons = '';
 
 	// Handle sections for sub tabs
@@ -71,14 +68,15 @@ function makeForm( $id, $action, $title, $buttonText, $formFields = array(), $fo
 		}
 	}
 
-	$returnVar = apply_filters( 'form_html_' . $id, '
+	$returnVar = apply_filters( 'form_html_' . $id,
+		'
 			<div class="box tabbable">
 				<div class="box-header">
 					<h3>' . $title . '</h3>
 					' . $tabLinks . '
 				</div>
 				<div class="tab-content form-container noPadding">
-					<form name="' . $id . 'Form" id="' . $id . 'Form" action="' . $action . '" method="post" class="form-horizontal" role="form"' . ( ( ! empty( $enctype ) ) ? ' enctype="' . $enctype . '"' : '' ) . ( ( $isAJAX ) ? ' onsubmit="return false;"' : '' ) . '>
+					<form name="' . $id . 'Form" id="' . $id . 'Form" action="' . $action . '" method="post" class="form-horizontal" role="form" ' . ( ( ! empty( $enctype ) ) ? ' enctype="' . $enctype . '"' : '' ) . ( ( $isAJAX ) ? ' onsubmit="return false;"' : '' ) . '>
 						' . $tabHolders . '
 						<div class="form-actions"><input type="submit" name="submit" class="btn btn-primary' . $extraPrimaryButtonClasses . '" value="' . $buttonText . '" />' . ( ( $showClearButton ) ? ' <input type="button" class="btn btn-default clearFormButton" value="Clear Form" />' : '' ) . $extraButtons . '</div>
 					</form>
@@ -94,14 +92,14 @@ function makeForm( $id, $action, $title, $buttonText, $formFields = array(), $fo
  *
  * @access public
  *
- * @param mixed $id
- * @param string $action (default: '')
- * @param string $table (default: '')
- * @param string $type (default: '')
- * @param string $extraValidationStuff (default: '')
+ * @param mixed  $id
+ * @param string $action                (default: '')
+ * @param string $table                 (default: '')
+ * @param string $type                  (default: '')
+ * @param string $extraValidationStuff  (default: '')
  * @param string $customSuccessFunction (default: '')
- * @param string $updateHolderID (default: '')
- * @param int $clearForm (default: 0)
+ * @param string $updateHolderID        (default: '')
+ * @param int    $clearForm             (default: 0)
  *
  * @return string                                            The actual form jQuery
  */
@@ -167,17 +165,14 @@ function makeFormJQuery( $id, $action = '', $table = '', $type = '', $extraValid
  * @access public
  *
  * @param mixed $title
- * @param array $formFields (default: array())
- * @param array $formData (default: array())
- * @param int $addLegend (default: 1)
+ * @param array $formFields (default: [])
+ * @param array $formData   (default: [])
+ * @param int   $addLegend  (default: 1)
  *
  * @return string                                The form fieldset
  */
-function makeFormFieldset( $title, $formFields = array(), $formData = array(), $addLegend = 1 ) {
-	global $menuvar, $mbp_config;
-
+function makeFormFieldset( $title, $formFields = [], $formData = [], $addLegend = 1 ) {
 	// Handle sections for sub tabs
-
 	$returnVar = '
 				<fieldset>';
 	if ( $addLegend ) {
@@ -191,7 +186,7 @@ function makeFormFieldset( $title, $formFields = array(), $formData = array(), $
 			// Get a text field for this value
 			$formItem = array(
 				'name' => $name,
-				'text' => $settingInfo
+				'text' => $settingInfo,
 			);
 		}
 		if ( ! isset ( $formItem['name'] ) ) {
@@ -221,7 +216,8 @@ function makeFormFieldset( $title, $formFields = array(), $formData = array(), $
  * @return array                The prefixed form field array
  */
 function addPrefixToFormFields( $prefix, $formFields ) {
-	$prefixedFormFields = array();
+	$prefixedFormFields = [];
+
 	foreach ( $formFields as $name => $settingInfo ) {
 		$prefixedFormFields[ $prefix . $name ] = $settingInfo;
 	}
@@ -229,10 +225,14 @@ function addPrefixToFormFields( $prefix, $formFields ) {
 	return $prefixedFormFields;
 }
 
-//=========================================================
-// Returns a form line based on the values passed
-//=========================================================
-function getFormItemFromArray( $rowData = array() ) {
+/**
+ * Returns a form line based on the values passed.
+ *
+ * @param array $rowData
+ *
+ * @return string
+ */
+function getFormItemFromArray( $rowData = [] ) {
 	global $mbp_config;
 
 	// Make sure we are actually looking at an array
@@ -266,7 +266,7 @@ function getFormItemFromArray( $rowData = array() ) {
 			'min'                        => '',
 			'multiple'                   => 'false',
 			'name'                       => '',
-			'options'                    => array(),
+			'options'                    => [],
 			'pattern'                    => '',
 			'placeholder'                => '',
 			'prepend'                    => '',
@@ -383,7 +383,7 @@ function getFormItemFromArray( $rowData = array() ) {
 
 						$inputHTML .= '</optgroup>';
 
-					} else if ( is_array( $currentValue ) ) {
+					} elseif ( is_array( $currentValue ) ) {
 						// Multiple select option
 						$inputHTML .= '<option value="' . esc_attr( $optionValue ) . '"' . testSelected( ( in_array( $optionValue, $currentValue ) ? $optionValue : null ), $optionValue ) . '>' . esc_html( $optionName ) . '</option>';
 
@@ -409,15 +409,16 @@ function getFormItemFromArray( $rowData = array() ) {
 
 			// Remove empty attributes (other than value)
 			// _ are not valid in PHP variable names so we have to account for cases where we used _ instead of -
-			$keysToRemove = array_merge( $defaults, array(
-				'data-animated'   => 'true',
-				'data-label-icon' => '',
-				'data-on'         => 'primary',
-				'data-on-label'   => 'ON',
-				'data-off'        => 'default',
-				'data-off-label'  => 'OFF',
-				'data-text-label' => '',
-			) );
+			$keysToRemove = array_merge( $defaults,
+				array(
+					'data-animated'   => 'true',
+					'data-label-icon' => '',
+					'data-on'         => 'primary',
+					'data-on-label'   => 'ON',
+					'data-off'        => 'default',
+					'data-off-label'  => 'OFF',
+					'data-text-label' => '',
+				) );
 			unset( $keysToRemove['value'] );
 			$inputHTML = preg_replace( '/(' . implode( '|', array_keys( $keysToRemove ) ) . ')=""/', '', $inputHTML );
 
@@ -433,16 +434,16 @@ function getFormItemFromArray( $rowData = array() ) {
 			$addPrependButton = ( ! empty( $prependButton ) ) ? 1 : 0;
 			if ( $addAppend || $addPrepend || $addAppendButton || $addPrependButton ) {
 				if ( $addAppend ) {
-					$inputHTML .= '<span class="input-group-addon">' . esc_html( $append ) . '</span>';
+					$inputHTML .= '<span class="input-group-addon">' . $append . '</span>';
 				}
 				if ( $addPrepend ) {
-					$inputHTML = '<span class="input-group-addon">' . esc_html( $prepend ) . '</span>' . $inputHTML;
+					$inputHTML = '<span class="input-group-addon">' . $prepend . '</span>' . $inputHTML;
 				}
 				if ( $addAppendButton ) {
-					$inputHTML .= '<span class="input-group-btn">' . esc_html( $appendButton ) . '</span>';
+					$inputHTML .= '<span class="input-group-btn">' . $appendButton . '</span>';
 				}
 				if ( $addPrependButton ) {
-					$inputHTML = '<span class="input-group-btn">' . esc_html( $prependButton ) . '</span>' . $inputHTML;
+					$inputHTML = '<span class="input-group-btn">' . $prependButton . '</span>' . $inputHTML;
 				}
 				$inputHTML = '<div class="input-group">' . $inputHTML . '</div>';
 			}
@@ -452,7 +453,7 @@ function getFormItemFromArray( $rowData = array() ) {
 
 			// Handle the wrappers
 			if ( $type != 'html' && $type != 'hidden' && $showLabel ) {
-				$inputHTML = '<label for="' . $id . '" class="control-label ' . $cols_label_class . '">' . esc_html( $text ) . ' </label> <div class="' . $cols_input_container_class . '">' . $inputHTML . '</div>';
+				$inputHTML = '<label for="' . $id . '" class="control-label ' . $cols_label_class . '">' . $text . ' </label> <div class="' . $cols_input_container_class . '">' . $inputHTML . '</div>';
 			}
 			if ( $type != 'hidden' ) {
 				$inputHTML = '<div class="form-group"' . $formGroupID . '>' . $inputHTML . '</div>';

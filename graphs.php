@@ -1,4 +1,4 @@
-<?php 
+<?php
 /***************************************************************************
  *                               graphs.php
  *                            -------------------
@@ -8,25 +8,29 @@
  *
  ***************************************************************************/
 
-if (user_access('graphs_access')) {
+if ( user_access( 'graphs_access' ) ) {
 	//==================================================
 	// Print out our graphs table
 	//==================================================	
 	// Get our module item	
-	$extraGraphLinks = callModuleHook('', 'graphsPage', array(
-		'section' => 'links'
-	));	
-	$extraGraphJQuery = callModuleHook('', 'graphsPage', array(
-		'section' => 'jQuery'
-	));	
-	
+	$extraGraphLinks  = callModuleHook( '',
+		'graphsPage',
+		[
+			'section' => 'links',
+		] );
+	$extraGraphJQuery = callModuleHook( '',
+		'graphsPage',
+		[
+			'section' => 'jQuery',
+		] );
+
 	$page_content .= '
 		<div class="box tabbable">
 			<div class="box-header">
-				<h3><i class="glyphicons glyphicons-stats"></i> ' . __('Graphs') . '</h3>
+				<h3><i class="glyphicons glyphicons-stats"></i> ' . __( 'Graphs' ) . '</h3>
 				<div class="toolbar">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#builtinGraphs" data-toggle="tab"><span>' . __('Built-in Graphs') . '</span></a></li>
+						<li class="active"><a href="#builtinGraphs" data-toggle="tab"><span>' . __( 'Built-in Graphs' ) . '</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -41,12 +45,12 @@ if (user_access('graphs_access')) {
 				</div>
 			</div>
 		</div>';
-			
+
 	// Handle our JQuery needs
-	$JQueryReadyScripts = $extraGraphJQuery . returnNewGraphFormJQuery(1);
-	
-	$page->setTemplateVar('PageContent', $page_content);
-	$page->setTemplateVar("JQueryReadyScript", $JQueryReadyScripts);
+	$JQueryReadyScripts = $extraGraphJQuery . returnNewGraphFormJQuery( 1 );
+
+	$page->setTemplateVar( 'PageContent', $page_content );
+	$page->setTemplateVar( "JQueryReadyScript", $JQueryReadyScripts );
 } else {
-	$page->setTemplateVar('PageContent', notAuthorizedNotice());
+	$page->setTemplateVar( 'PageContent', notAuthorizedNotice() );
 }

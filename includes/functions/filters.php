@@ -1,4 +1,4 @@
-<?php 
+<?php
 /************************************************************************
  *                               filters.php
  *                            -------------------
@@ -10,25 +10,28 @@
  ***************************************************************************/
 
 
-
 //=========================================================
 // Mimics WordPress's functions
 //=========================================================
 // Initialize the filter globals.
 global $mbp_filter, $mbp_actions, $merged_filters, $mbp_current_filter;
 
-if ( ! isset( $mbp_filter ) )
-	$mbp_filter = array();
+if ( ! isset( $mbp_filter ) ) {
+	$mbp_filter = [];
+}
 
-if ( ! isset( $mbp_actions ) )
-	$mbp_actions = array();
+if ( ! isset( $mbp_actions ) ) {
+	$mbp_actions = [];
+}
 
-if ( ! isset( $merged_filters ) )
-	$merged_filters = array();
+if ( ! isset( $merged_filters ) ) {
+	$merged_filters = [];
+}
 
-if ( ! isset( $mbp_current_filter ) )
-	$mbp_current_filter = array();
-	
+if ( ! isset( $mbp_current_filter ) ) {
+	$mbp_current_filter = [];
+}
+
 /**
  * Hook a function or method to a specific filter action.
  *
@@ -44,8 +47,8 @@ if ( ! isset( $mbp_current_filter ) )
  *
  * <code>
  * function example_callback( $example ) {
- * 	// Maybe modify $example in some way
- * 	return $example;
+ *    // Maybe modify $example in some way
+ *    return $example;
  * }
  * add_filter( 'example_filter', 'example_callback' );
  * </code>
@@ -58,12 +61,6 @@ if ( ! isset( $mbp_current_filter ) )
  * is valid. It is up to you to take care. This is done for optimization purposes,
  * so everything is as quick as possible.
  *
- * @since 4.13.08.08
- *
- * @global array $mbp_filter      A multidimensional array of all hooks and the callbacks hooked to them.
- * @global array $merged_filters Tracks the tags that need to be merged for later. If the hook is added,
- *                               it doesn't need to run through that process.
- *
  * @param string   $tag             The name of the filter to hook the $function_to_add callback to.
  * @param callback $function_to_add The callback to be run when the filter is applied.
  * @param int      $priority        Optional. Used to specify the order in which the functions
@@ -72,46 +69,58 @@ if ( ! isset( $mbp_current_filter ) )
  *                                  and functions with the same priority are executed
  *                                  in the order in which they were added to the action.
  * @param int      $accepted_args   Optional. The number of arguments the function accepts. Default 1.
+ *
  * @return boolean true
+ * @global array   $merged_filters  Tracks the tags that need to be merged for later. If the hook is added,
+ *                                  it doesn't need to run through that process.
+ *
+ * @since 4.13.08.08
+ *
+ * @global array   $mbp_filter      A multidimensional array of all hooks and the callbacks hooked to them.
  */
 function add_filter( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 	global $mbp_filter, $merged_filters;
 
-	$idx = _mbp_filter_build_unique_id( $tag, $function_to_add, $priority );
-	$mbp_filter[$tag][$priority][$idx] = array( 'function' => $function_to_add, 'accepted_args' => $accepted_args );
+	$idx                                     = _mbp_filter_build_unique_id( $tag, $function_to_add, $priority );
+	$mbp_filter[ $tag ][ $priority ][ $idx ] = array( 'function' => $function_to_add, 'accepted_args' => $accepted_args );
 	unset( $merged_filters[ $tag ] );
+
 	return true;
 }
 
 /**
  * Check if any filter has been registered for a hook.
  *
- * @since 4.13.08.08
- *
- * @global array $mbp_filter Stores all of the filters.
- *
  * @param string        $tag               The name of the filter hook.
  * @param callback|bool $function_to_check Optional. The callback to check for. Default false.
+ *
  * @return bool|int If $function_to_check is omitted, returns boolean for whether the hook has
  *                  anything registered. When checking a specific function, the priority of that
  *                  hook is returned, or false if the function is not attached. When using the
  *                  $function_to_check argument, this function may return a non-boolean value
  *                  that evaluates to false (e.g.) 0, so use the === operator for testing the
  *                  return value.
+ * @global array        $mbp_filter        Stores all of the filters.
+ *
+ * @since 4.13.08.08
+ *
  */
 function has_filter( $tag, $function_to_check = false ) {
 	global $mbp_filter;
 
-	$has = !empty($mbp_filter[$tag]);
-	if ( false === $function_to_check || false == $has )
+	$has = ! empty( $mbp_filter[ $tag ] );
+	if ( false === $function_to_check || false == $has ) {
 		return $has;
+	}
 
-	if ( !$idx = _mbp_filter_build_unique_id( $tag, $function_to_check, false ) )
+	if ( ! $idx = _mbp_filter_build_unique_id( $tag, $function_to_check, false ) ) {
 		return false;
+	}
 
-	foreach ( (array) array_keys($mbp_filter[$tag]) as $priority ) {
-		if ( isset($mbp_filter[$tag][$priority][$idx]) )
+	foreach ( (array) array_keys( $mbp_filter[ $tag ] ) as $priority ) {
+		if ( isset( $mbp_filter[ $tag ][ $priority ][ $idx ] ) ) {
 			return $priority;
+		}
 	}
 
 	return false;
@@ -128,25 +137,26 @@ function has_filter( $tag, $function_to_check = false ) {
  * when the hook was added. This goes for both filters and actions. No warning
  * will be given on removal failure.
  *
- * @since 4.13.08.08
- *
  * @param string   $tag                The filter hook to which the function to be removed is hooked.
  * @param callback $function_to_remove The name of the function which should be removed.
  * @param int      $priority           Optional. The priority of the function. Default 10.
+ *
  * @return boolean Whether the function existed before it was removed.
+ * @since 4.13.08.08
+ *
  */
 function remove_filter( $tag, $function_to_remove, $priority = 10, $accepted_args = 1 ) {
 	$function_to_remove = _mbp_filter_build_unique_id( $tag, $function_to_remove, $priority );
 
 	$r = isset( $GLOBALS['mbp_filter'][ $tag ][ $priority ][ $function_to_remove ] );
 
-	if ( true === $r) {
+	if ( true === $r ) {
 		unset( $GLOBALS['mbp_filter'][ $tag ][ $priority ][ $function_to_remove ] );
 		if ( empty( $GLOBALS['mbp_filter'][ $tag ][ $priority ] ) ) {
 			unset( $GLOBALS['mbp_filter'][ $tag ][ $priority ] );
 		}
 		if ( empty( $GLOBALS['mbp_filter'][ $tag ] ) ) {
-			$GLOBALS['mbp_filter'][ $tag ] = array();
+			$GLOBALS['mbp_filter'][ $tag ] = [];
 		}
 		unset( $GLOBALS['merged_filters'][ $tag ] );
 	}
@@ -157,20 +167,21 @@ function remove_filter( $tag, $function_to_remove, $priority = 10, $accepted_arg
 /**
  * Remove all of the hooks from a filter.
  *
- * @since 4.13.08.08
- *
  * @param string   $tag      The filter to remove hooks from.
  * @param int|bool $priority Optional. The priority number to remove. Default false.
+ *
  * @return bool True when finished.
+ * @since 4.13.08.08
+ *
  */
 function remove_all_filters( $tag, $priority = false ) {
 	global $mbp_filter, $merged_filters;
 
-	if ( isset( $mbp_filter[ $tag ]) ) {
+	if ( isset( $mbp_filter[ $tag ] ) ) {
 		if ( false !== $priority && isset( $mbp_filter[ $tag ][ $priority ] ) ) {
-			$mbp_filter[ $tag ][ $priority ] = array();
+			$mbp_filter[ $tag ][ $priority ] = [];
 		} else {
-			$mbp_filter[ $tag ] = array();
+			$mbp_filter[ $tag ] = [];
 		}
 	}
 
@@ -179,7 +190,7 @@ function remove_all_filters( $tag, $priority = false ) {
 	}
 
 	return true;
-}	
+}
 
 /**
  * Call the functions added to a filter hook.
@@ -193,8 +204,8 @@ function remove_all_filters( $tag, $priority = false ) {
  * <code>
  * // Our filter callback function
  * function example_callback( $string, $arg1, $arg2 ) {
- *	// (maybe) modify $string
- *	return $string;
+ *    // (maybe) modify $string
+ *    return $string;
  * }
  * add_filter( 'example_filter', 'example_callback', 10, 3 );
  *
@@ -206,57 +217,63 @@ function remove_all_filters( $tag, $priority = false ) {
  * $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
  * </code>
  *
+ * @param string $tag                The name of the filter hook.
+ * @param mixed  $value              The value on which the filters hooked to <tt>$tag</tt> are applied on.
+ * @param mixed  $var                Additional variables passed to the functions hooked to <tt>$tag</tt>.
+ *
+ * @return mixed The filtered value after all hooked functions are applied to it.
  * @since 4.13.08.08
  *
  * @global array $mbp_filter         Stores all of the filters.
- * @global array $merged_filters    Merges the filter hooks using this function.
+ * @global array $merged_filters     Merges the filter hooks using this function.
  * @global array $mbp_current_filter Stores the list of current filters with the current one last.
  *
- * @param string $tag   The name of the filter hook.
- * @param mixed  $value The value on which the filters hooked to <tt>$tag</tt> are applied on.
- * @param mixed  $var   Additional variables passed to the functions hooked to <tt>$tag</tt>.
- * @return mixed The filtered value after all hooked functions are applied to it.
  */
-function apply_filters($tag, $value) {
+function apply_filters( $tag, $value ) {
 	global $mbp_filter, $merged_filters, $mbp_current_filter;
 
-	$args = array();
+	$args = [];
 
 	// Do 'all' actions first
-	if ( isset($mbp_filter['all']) ) {
+	if ( isset( $mbp_filter['all'] ) ) {
 		$mbp_current_filter[] = $tag;
-		$args = func_get_args();
-		_mbp_call_all_hook($args);
+		$args                 = func_get_args();
+		_mbp_call_all_hook( $args );
 	}
 
-	if ( !isset($mbp_filter[$tag]) ) {
-		if ( isset($mbp_filter['all']) )
-			array_pop($mbp_current_filter);
+	if ( ! isset( $mbp_filter[ $tag ] ) ) {
+		if ( isset( $mbp_filter['all'] ) ) {
+			array_pop( $mbp_current_filter );
+		}
+
 		return $value;
 	}
 
-	if ( !isset($mbp_filter['all']) )
+	if ( ! isset( $mbp_filter['all'] ) ) {
 		$mbp_current_filter[] = $tag;
+	}
 
 	// Sort
-	if ( !isset( $merged_filters[ $tag ] ) ) {
-		ksort($mbp_filter[$tag]);
+	if ( ! isset( $merged_filters[ $tag ] ) ) {
+		ksort( $mbp_filter[ $tag ] );
 		$merged_filters[ $tag ] = true;
 	}
 
 	reset( $mbp_filter[ $tag ] );
 
-	if ( empty($args) )
+	if ( empty( $args ) ) {
 		$args = func_get_args();
+	}
 
 	do {
-		foreach( (array) current($mbp_filter[$tag]) as $the_ )
-			if ( !is_null($the_['function']) ){
+		foreach ( (array) current( $mbp_filter[ $tag ] ) as $the_ ) {
+			if ( ! is_null( $the_['function'] ) ) {
 				$args[1] = $value;
-				$value = call_user_func_array($the_['function'], array_slice($args, 1, (int) $the_['accepted_args']));
+				$value   = call_user_func_array( $the_['function'], array_slice( $args, 1, (int) $the_['accepted_args'] ) );
 			}
+		}
 
-	} while ( next($mbp_filter[$tag]) !== false );
+	} while ( next( $mbp_filter[ $tag ] ) !== false );
 
 	array_pop( $mbp_current_filter );
 
@@ -271,10 +288,6 @@ function apply_filters($tag, $value) {
  * one or more of its PHP functions are executed at these points, using the
  * Action API.
  *
- * @since 4.13.08.08
- *
- * @uses add_filter() Adds an action. Parameter list and functionality are the same.
- *
  * @param string   $tag             The name of the action to which the $function_to_add is hooked.
  * @param callback $function_to_add The name of the function you wish to be called.
  * @param int      $priority        Optional. Used to specify the order in which the functions
@@ -283,10 +296,15 @@ function apply_filters($tag, $value) {
  *                                  and functions with the same priority are executed
  *                                  in the order in which they were added to the action.
  * @param int      $accepted_args   Optional. The number of arguments the function accept. Default 1.
+ *
  * @return bool Will always return true.
+ * @uses  add_filter() Adds an action. Parameter list and functionality are the same.
+ *
+ * @since 4.13.08.08
+ *
  */
-function add_action($tag, $function_to_add, $priority = 10, $accepted_args = 1) {
-	return add_filter($tag, $function_to_add, $priority, $accepted_args);
+function add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+	return add_filter( $tag, $function_to_add, $priority, $accepted_args );
 }
 
 /**
@@ -299,158 +317,178 @@ function add_action($tag, $function_to_add, $priority = 10, $accepted_args = 1) 
  * You can pass extra arguments to the hooks, much like you can with
  * apply_filters().
  *
- * @since 4.13.08.08
+ * @param string $tag         The name of the action to be executed.
+ * @param mixed  $arg         Optional. Additional arguments which are passed on to the
+ *                            functions hooked to the action. Default empty.
  *
- * @see apply_filters() This function works similar with the exception that nothing
- *                      is returned and only the functions or methods are called.
- * @global array $mbp_filter  Stores all of the filters
+ * @return null Will return null if $tag does not exist in $mbp_filter array.
  * @global array $mbp_actions Increments the amount of times action was triggered.
  *
- * @param string $tag The name of the action to be executed.
- * @param mixed  $arg Optional. Additional arguments which are passed on to the
- *                    functions hooked to the action. Default empty.
- * @return null Will return null if $tag does not exist in $mbp_filter array.
+ * @since 4.13.08.08
+ *
+ * @see   apply_filters() This function works similar with the exception that nothing
+ *                      is returned and only the functions or methods are called.
+ * @global array $mbp_filter  Stores all of the filters
  */
-function do_action($tag, $arg = '') {
+function do_action( $tag, $arg = '' ) {
 	global $mbp_filter, $mbp_actions, $merged_filters, $mbp_current_filter;
 
-	if ( ! isset($mbp_actions[$tag]) )
-		$mbp_actions[$tag] = 1;
-	else
-		++$mbp_actions[$tag];
-
-	// Do 'all' actions first
-	if ( isset($mbp_filter['all']) ) {
-		$mbp_current_filter[] = $tag;
-		$all_args = func_get_args();
-		_mbp_call_all_hook($all_args);
+	if ( ! isset( $mbp_actions[ $tag ] ) ) {
+		$mbp_actions[ $tag ] = 1;
+	} else {
+		++ $mbp_actions[ $tag ];
 	}
 
-	if ( !isset($mbp_filter[$tag]) ) {
-		if ( isset($mbp_filter['all']) )
-			array_pop($mbp_current_filter);
+	// Do 'all' actions first
+	if ( isset( $mbp_filter['all'] ) ) {
+		$mbp_current_filter[] = $tag;
+		$all_args             = func_get_args();
+		_mbp_call_all_hook( $all_args );
+	}
+
+	if ( ! isset( $mbp_filter[ $tag ] ) ) {
+		if ( isset( $mbp_filter['all'] ) ) {
+			array_pop( $mbp_current_filter );
+		}
+
 		return;
 	}
 
-	if ( !isset($mbp_filter['all']) )
+	if ( ! isset( $mbp_filter['all'] ) ) {
 		$mbp_current_filter[] = $tag;
+	}
 
-	$args = array();
-	if ( is_array($arg) && 1 == count($arg) && isset($arg[0]) && is_object($arg[0]) ) // array(&$this)
+	$args = [];
+	if ( is_array( $arg ) && 1 == count( $arg ) && isset( $arg[0] ) && is_object( $arg[0] ) ) // array(&$this)
+	{
 		$args[] =& $arg[0];
-	else
+	} else {
 		$args[] = $arg;
-	for ( $a = 2; $a < func_num_args(); $a++ )
-		$args[] = func_get_arg($a);
+	}
+	for ( $a = 2; $a < func_num_args(); $a ++ ) {
+		$args[] = func_get_arg( $a );
+	}
 
 	// Sort
-	if ( !isset( $merged_filters[ $tag ] ) ) {
-		ksort($mbp_filter[$tag]);
+	if ( ! isset( $merged_filters[ $tag ] ) ) {
+		ksort( $mbp_filter[ $tag ] );
 		$merged_filters[ $tag ] = true;
 	}
 
 	reset( $mbp_filter[ $tag ] );
 
 	do {
-		foreach ( (array) current($mbp_filter[$tag]) as $the_ )
-			if ( !is_null($the_['function']) )
-				call_user_func_array($the_['function'], array_slice($args, 0, (int) $the_['accepted_args']));
+		foreach ( (array) current( $mbp_filter[ $tag ] ) as $the_ ) {
+			if ( ! is_null( $the_['function'] ) ) {
+				call_user_func_array( $the_['function'], array_slice( $args, 0, (int) $the_['accepted_args'] ) );
+			}
+		}
 
-	} while ( next($mbp_filter[$tag]) !== false );
+	} while ( next( $mbp_filter[ $tag ] ) !== false );
 
-	array_pop($mbp_current_filter);
+	array_pop( $mbp_current_filter );
 }
 
 /**
  * Retrieve the number of times an action is fired.
  *
+ * @param string $tag         The name of the action hook.
+ *
+ * @return int The number of times action hook $tag is fired.
  * @since 4.13.08.08
  *
  * @global array $mbp_actions Increments the amount of times action was triggered.
  *
- * @param string $tag The name of the action hook.
- * @return int The number of times action hook $tag is fired.
  */
-function did_action($tag) {
+function did_action( $tag ) {
 	global $mbp_actions;
 
-	if ( ! isset( $mbp_actions ) || ! isset( $mbp_actions[$tag] ) )
+	if ( ! isset( $mbp_actions ) || ! isset( $mbp_actions[ $tag ] ) ) {
 		return 0;
+	}
 
-	return $mbp_actions[$tag];
+	return $mbp_actions[ $tag ];
 }
 
 /**
  * Execute functions hooked on a specific action hook, specifying arguments in an array.
  *
- * @since 4.13.08.08
+ * @param string $tag         The name of the action to be executed.
+ * @param array  $args        The arguments supplied to the functions hooked to <tt>$tag</tt>
  *
- * @see do_action() This function is identical, but the arguments passed to the
- *                  functions hooked to $tag< are supplied using an array.
- * @global array $mbp_filter  Stores all of the filters
+ * @return null Will return null if $tag does not exist in $mbp_filter array
  * @global array $mbp_actions Increments the amount of times action was triggered.
  *
- * @param string $tag  The name of the action to be executed.
- * @param array  $args The arguments supplied to the functions hooked to <tt>$tag</tt>
- * @return null Will return null if $tag does not exist in $mbp_filter array
+ * @since 4.13.08.08
+ *
+ * @see   do_action() This function is identical, but the arguments passed to the
+ *                  functions hooked to $tag< are supplied using an array.
+ * @global array $mbp_filter  Stores all of the filters
  */
 function do_action_ref_array( $tag, $args ) {
 	global $mbp_filter, $mbp_actions, $merged_filters, $mbp_current_filter;
 
-	if ( ! isset($mbp_actions[$tag]) )
-		$mbp_actions[$tag] = 1;
-	else
-		++$mbp_actions[$tag];
-
-	// Do 'all' actions first
-	if ( isset($mbp_filter['all']) ) {
-		$mbp_current_filter[] = $tag;
-		$all_args = func_get_args();
-		_mbp_call_all_hook($all_args);
+	if ( ! isset( $mbp_actions[ $tag ] ) ) {
+		$mbp_actions[ $tag ] = 1;
+	} else {
+		++ $mbp_actions[ $tag ];
 	}
 
-	if ( !isset($mbp_filter[$tag]) ) {
-		if ( isset($mbp_filter['all']) )
-			array_pop($mbp_current_filter);
+	// Do 'all' actions first
+	if ( isset( $mbp_filter['all'] ) ) {
+		$mbp_current_filter[] = $tag;
+		$all_args             = func_get_args();
+		_mbp_call_all_hook( $all_args );
+	}
+
+	if ( ! isset( $mbp_filter[ $tag ] ) ) {
+		if ( isset( $mbp_filter['all'] ) ) {
+			array_pop( $mbp_current_filter );
+		}
+
 		return;
 	}
 
-	if ( !isset($mbp_filter['all']) )
+	if ( ! isset( $mbp_filter['all'] ) ) {
 		$mbp_current_filter[] = $tag;
+	}
 
 	// Sort
-	if ( !isset( $merged_filters[ $tag ] ) ) {
-		ksort($mbp_filter[$tag]);
+	if ( ! isset( $merged_filters[ $tag ] ) ) {
+		ksort( $mbp_filter[ $tag ] );
 		$merged_filters[ $tag ] = true;
 	}
 
 	reset( $mbp_filter[ $tag ] );
 
 	do {
-		foreach( (array) current($mbp_filter[$tag]) as $the_ )
-			if ( !is_null($the_['function']) )
-				call_user_func_array($the_['function'], array_slice($args, 0, (int) $the_['accepted_args']));
+		foreach ( (array) current( $mbp_filter[ $tag ] ) as $the_ ) {
+			if ( ! is_null( $the_['function'] ) ) {
+				call_user_func_array( $the_['function'], array_slice( $args, 0, (int) $the_['accepted_args'] ) );
+			}
+		}
 
-	} while ( next($mbp_filter[$tag]) !== false );
+	} while ( next( $mbp_filter[ $tag ] ) !== false );
 
-	array_pop($mbp_current_filter);
+	array_pop( $mbp_current_filter );
 }
 
 /**
  * Check if any action has been registered for a hook.
  *
- * @since 4.13.08.08
- *
- * @see has_filter() has_action() is an alias of has_filter().
- *
  * @param string        $tag               The name of the action hook.
  * @param callback|bool $function_to_check Optional. The callback to check for. Default false.
+ *
  * @return bool|int If $function_to_check is omitted, returns boolean for whether the hook has
  *                  anything registered. When checking a specific function, the priority of that
  *                  hook is returned, or false if the function is not attached. When using the
  *                  $function_to_check argument, this function may return a non-boolean value
  *                  that evaluates to false (e.g.) 0, so use the === operator for testing the
  *                  return value.
+ * @see   has_filter() has_action() is an alias of has_filter().
+ *
+ * @since 4.13.08.08
+ *
  */
 function has_action( $tag, $function_to_check = false ) {
 	return has_filter( $tag, $function_to_check );
@@ -463,12 +501,13 @@ function has_action( $tag, $function_to_check = false ) {
  * method can be used to remove default functions attached to a specific filter
  * hook and possibly replace them with a substitute.
  *
- * @since 4.13.08.08
- *
  * @param string   $tag                The action hook to which the function to be removed is hooked.
  * @param callback $function_to_remove The name of the function which should be removed.
  * @param int      $priority           Optional. The priority of the function. Default 10.
+ *
  * @return boolean Whether the function is removed.
+ * @since 4.13.08.08
+ *
  */
 function remove_action( $tag, $function_to_remove, $priority = 10, $accepted_args = 1 ) {
 	return remove_filter( $tag, $function_to_remove, $priority, $accepted_args );
@@ -477,11 +516,12 @@ function remove_action( $tag, $function_to_remove, $priority = 10, $accepted_arg
 /**
  * Remove all of the hooks from an action.
  *
- * @since 4.13.08.08
- *
  * @param string   $tag      The action to remove hooks from.
  * @param int|bool $priority The priority number to remove them from. Default false.
+ *
  * @return bool True when finished.
+ * @since 4.13.08.08
+ *
  */
 function remove_all_actions( $tag, $priority = false ) {
 	return remove_all_filters( $tag, $priority );
@@ -494,27 +534,30 @@ function remove_all_actions( $tag, $priority = false ) {
  * the hook, which this function was called for.
  *
  * This function is used internally for apply_filters(), do_action(), and
- * do_action_ref_array() and is not meant to be used from outside those
+ * do_action_ref_[] and is not meant to be used from outside those
  * functions. This function does not check for the existence of the all hook, so
  * it will fail unless the all hook exists prior to this function call.
  *
- * @since 4.13.08.08
+ * @param array $args The collected parameters from the hook that was called.
+ *
+ * @uses   $mbp_filter Used to process all of the functions in the 'all' hook.
+ *
+ * @since  4.13.08.08
  * @access private
  *
- * @uses $mbp_filter Used to process all of the functions in the 'all' hook.
- *
- * @param array $args The collected parameters from the hook that was called.
  */
-function _mbp_call_all_hook($args) {
+function _mbp_call_all_hook( $args ) {
 	global $mbp_filter;
 
 	reset( $mbp_filter['all'] );
 	do {
-		foreach( (array) current($mbp_filter['all']) as $the_ )
-			if ( !is_null($the_['function']) )
-				call_user_func_array($the_['function'], $args);
+		foreach ( (array) current( $mbp_filter['all'] ) as $the_ ) {
+			if ( ! is_null( $the_['function'] ) ) {
+				call_user_func_array( $the_['function'], $args );
+			}
+		}
 
-	} while ( next($mbp_filter['all']) !== false );
+	} while ( next( $mbp_filter['all'] ) !== false );
 }
 
 /**
@@ -534,53 +577,56 @@ function _mbp_call_all_hook($args) {
  * Functions and static method callbacks are just returned as strings and
  * shouldn't have any speed penalty.
  *
- * @since 4.13.08.08
- * @access private
+ * @param string   $tag        Used in counting how many hooks were applied
+ * @param callback $function   Used for creating unique id
+ * @param int|bool $priority   Used in counting how many hooks were applied. If === false
+ *                             and $function is an object reference, we return the unique
+ *                             id only if it already has one, false otherwise.
  *
- * @global array $mbp_filter Storage for all of the filters and actions.
- *
- * @param string   $tag      Used in counting how many hooks were applied
- * @param callback $function Used for creating unique id
- * @param int|bool $priority Used in counting how many hooks were applied. If === false
- *                           and $function is an object reference, we return the unique
- *                           id only if it already has one, false otherwise.
  * @return string|bool Unique ID for usage as array key or false if $priority === false
  *                     and $function is an object reference, and it does not already have
  *                     a unique id.
+ * @since  4.13.08.08
+ * @access private
+ *
+ * @global array   $mbp_filter Storage for all of the filters and actions.
+ *
  */
 function _mbp_filter_build_unique_id( $tag, $function, $priority ) {
 	global $mbp_filter;
 	static $filter_id_count = 0;
 
-	if ( is_string($function) )
+	if ( is_string( $function ) ) {
 		return $function;
+	}
 
-	if ( is_object($function) ) {
+	if ( is_object( $function ) ) {
 		// Closures are currently implemented as objects
 		$function = array( $function, '' );
 	} else {
 		$function = (array) $function;
 	}
 
-	if (is_object($function[0]) ) {
+	if ( is_object( $function[0] ) ) {
 		// Object Class Calling
-		if ( function_exists('spl_object_hash') ) {
-			return spl_object_hash($function[0]) . $function[1];
+		if ( function_exists( 'spl_object_hash' ) ) {
+			return spl_object_hash( $function[0] ) . $function[1];
 		} else {
-			$obj_idx = get_class($function[0]).$function[1];
-			if ( !isset($function[0]->mbp_filter_id) ) {
-				if ( false === $priority )
+			$obj_idx = get_class( $function[0] ) . $function[1];
+			if ( ! isset( $function[0]->mbp_filter_id ) ) {
+				if ( false === $priority ) {
 					return false;
-				$obj_idx .= isset($mbp_filter[$tag][$priority]) ? count((array)$mbp_filter[$tag][$priority]) : $filter_id_count;
+				}
+				$obj_idx                    .= isset( $mbp_filter[ $tag ][ $priority ] ) ? count( (array) $mbp_filter[ $tag ][ $priority ] ) : $filter_id_count;
 				$function[0]->mbp_filter_id = $filter_id_count;
-				++$filter_id_count;
+				++ $filter_id_count;
 			} else {
 				$obj_idx .= $function[0]->mbp_filter_id;
 			}
 
 			return $obj_idx;
 		}
-	} else if ( is_string($function[0]) ) {
+	} elseif ( is_string( $function[0] ) ) {
 		// Static Calling
 		return $function[0] . '::' . $function[1];
 	}

@@ -4,17 +4,17 @@
 
 // Add our new columns to the users table
 // Also increase the size of a few columns
-$sql = "ALTER TABLE `" . USERSDBTABLEPREFIX . "users` 
-	CHANGE `username` `username` varchar(255) NOT NULL DEFAULT '',
-	CHANGE `email_address` `email_address` varchar(255) DEFAULT NULL,
-	CHANGE `website` `website` varchar(255) DEFAULT NULL,
-	CHANGE `company` `company` varchar(255) NULL,
-	ADD `title` varchar(255) DEFAULT NULL,
-	ADD `phone_number` varchar(255) DEFAULT NULL,
-	ADD `facebook` varchar(255) DEFAULT NULL,
-	ADD `twitter` varchar(255) DEFAULT NULL,
-	ADD `google_plus` varchar(255) DEFAULT NULL,
-	ADD `pinterest` varchar(255) DEFAULT NULL,
-	ADD `instagram` varchar(255) DEFAULT NULL,
-	ADD `linkedin` varchar(255) DEFAULT NULL";
-$result = $ftsdb->run($sql);
+$sql    = "ALTER TABLE `" . USERSDBTABLEPREFIX . "users` 
+	CHANGE `username` `username` VARCHAR(255) NOT NULL DEFAULT '',
+	CHANGE `email_address` `email_address` VARCHAR(255) DEFAULT NULL,
+	CHANGE `website` `website` VARCHAR(255) DEFAULT NULL,
+	CHANGE `company` `company` VARCHAR(255) NULL,
+	ADD `title` VARCHAR(255) DEFAULT NULL,
+	ADD `phone_number` VARCHAR(255) DEFAULT NULL,
+	ADD `facebook` VARCHAR(255) DEFAULT NULL,
+	ADD `twitter` VARCHAR(255) DEFAULT NULL,
+	ADD `google_plus` VARCHAR(255) DEFAULT NULL,
+	ADD `pinterest` VARCHAR(255) DEFAULT NULL,
+	ADD `instagram` VARCHAR(255) DEFAULT NULL,
+	ADD `linkedin` VARCHAR(255) DEFAULT NULL";
+$result = $ftsdb->run( $sql );

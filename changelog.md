@@ -737,8 +737,8 @@
 ## 4.13.08.08  
 **FIX** Deprecated functions:
 * parseurl($makesafe) => keepsafe($makesafe)
-* returnRemoteFilePost($host, $directory, $filename, $urlVariablesArray = array()) => $fts_http->request( $path, $method = 'GET', $request_vars = array() )
-* curlGetURL($url) => $fts_http->request( $path, $method = 'GET', $request_vars = array() )
+* returnRemoteFilePost($host, $directory, $filename, $urlVariablesArray = []) => $fts_http->request( $path, $method = 'GET', $request_vars = [] )
+* curlGetURL($url) => $fts_http->request( $path, $method = 'GET', $request_vars = [] )
   
 **ADD** New functions:
 * load_config_values()

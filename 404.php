@@ -1,4 +1,4 @@
-<?php 
+<?php
 /***************************************************************************
  *                               404.php
  *                            -------------------
@@ -8,4 +8,4 @@
  *
  ***************************************************************************/
 
-$page->setTemplateVar('PageContent', "<h3><span color=\"red\">404 Page Not Found</span></h3>The page you requested was not found in our database, please check the link and try again.");
+$page->setTemplateVar( 'PageContent', "<h3><span color=\"red\">404 Page Not Found</span></h3>The page you requested was not found in our database, please check the link and try again." );

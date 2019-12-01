@@ -89,7 +89,7 @@ class FTS_MapRewriteMatches {
 	 *
 	 * @access public
 	 *
-	 * @param  array $matches preg_replace regexp matches
+	 * @param array $matches preg_replace regexp matches
 	 *
 	 * @return string
 	 */

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /***************************************************************************
  *                               module.php
  *                            -------------------
@@ -11,8 +11,10 @@
 //==================================================
 // This page will handle all module pages, security will be handled at each modules level using the user_access() functuion
 //==================================================		
-callModuleHook($actual_prefix, 'showPage', array(
-	'module_page' => $actual_module_page,
-	'content' => $_REQUEST
-));
-callModuleHook('', 'changePageTemplate'); // Allow other modules to change the theme for these pages
+callModuleHook( $actual_prefix,
+	'showPage',
+	[
+		'module_page' => $actual_module_page,
+		'content'     => $_REQUEST,
+	] );
+callModuleHook( '', 'changePageTemplate' ); // Allow other modules to change the theme for these pages

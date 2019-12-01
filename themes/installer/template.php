@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
     <head>
-        <title>Paden Clayton Installer - <?php $page->printTemplateVar('PageTitle');  ?></title>
+        <title>Paden Clayton Installer - <?php $page->printTemplateVar( 'PageTitle' ); ?></title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="content-language" content="en-us" />
@@ -42,15 +46,25 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-3 col-md-3">
                         <ul class="nav nav-tabs nav-stacked sidebar">
-                            <li class="step <?php if ($actual_step == 1) { echo ' active'; } ?>"><span><span class="badge">1</span> Introduction</span></li>
-                            <li class="step <?php if ($actual_step == 2) { echo ' active'; } ?>"><span><span class="badge">2</span> Database Connection</span></li>
-                            <li class="step <?php if ($actual_step == 3) { echo ' active'; } ?>"><span><span class="badge">3</span> Create database Tables</span></li>
-                            <li class="step <?php if ($actual_step == 4) { echo ' active'; } ?>"><span><span class="badge">4</span> Create Admin Account</span></li>
-                            <li class="step <?php if ($actual_step == 5) { echo ' active'; } ?>"><span><span class="badge">5</span> Finish</span></li>
+                            <li class="step <?php if ( $actual_step == 1 ) {
+								echo ' active';
+							} ?>"><span><span class="badge">1</span> Introduction</span></li>
+                            <li class="step <?php if ( $actual_step == 2 ) {
+								echo ' active';
+							} ?>"><span><span class="badge">2</span> Database Connection</span></li>
+                            <li class="step <?php if ( $actual_step == 3 ) {
+								echo ' active';
+							} ?>"><span><span class="badge">3</span> Create database Tables</span></li>
+                            <li class="step <?php if ( $actual_step == 4 ) {
+								echo ' active';
+							} ?>"><span><span class="badge">4</span> Create Admin Account</span></li>
+                            <li class="step <?php if ( $actual_step == 5 ) {
+								echo ' active';
+							} ?>"><span><span class="badge">5</span> Finish</span></li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-9 col-md-9" id="content">
-						<?php $page->printTemplateVar('PageContent'); ?>
+						<?php $page->printTemplateVar( 'PageContent' ); ?>
                     </div>
                 </div> <!-- /row -->
             </div> <!-- /installation-container -->
@@ -76,8 +90,8 @@
         <script src="<?php echo SITE_URL; ?>/node_modules/jquery.pwstrength/dist/pwstrength-bootstrap.min.js"></script>
 
         <script type="text/javascript">
-          $(document).ready(function(){
-			  <?php $page->printTemplateVar('JQueryReadyScript'); ?>
+          $(document).ready(function() {
+			  <?php $page->printTemplateVar( 'JQueryReadyScript' ); ?>
           });
         </script>
         <!--Javascripts End-->

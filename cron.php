@@ -9,36 +9,35 @@
  ***************************************************************************/
 
 
-
 /* Define our Paths */
 define( 'IN_CRON', true );
-define( 'ABSPATH', dirname(__FILE__) . '/' );
+define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 define( 'BASEPATH', rtrim( ABSPATH, '/' ) );
 
 include BASEPATH . '/includes/header.php';
 
 $floodControlTimer = get_config_value( 'ftsmbp_cron_flood_control_timer' );
-$useFloodControl = get_config_value( 'ftsmbp_cron_use_flood_control', 0 );
-$showLog = get_config_value( 'ftsmbp_cron_show_log', 0 );
-$log = '';
+$useFloodControl   = get_config_value( 'ftsmbp_cron_use_flood_control', 0 );
+$showLog           = get_config_value( 'ftsmbp_cron_show_log', 0 );
+$log               = '';
 
-if ( $floodControlTimer <= time() || !$useFloodControl ) {
+if ( $floodControlTimer <= time() || ! $useFloodControl ) {
 	// Log this event
-	$logID = addLogEvent( array(
-		'type' => LOG_TYPE_CRON,
+	$logID = addLogEvent( [
+		'type'    => LOG_TYPE_CRON,
 		'message' => 'Running cron',
-		'start' => time(),
-	) );
+		'start'   => time(),
+	] );
 
 	// Determine what we are doing
-	if ( !isset( $_REQUEST['action'] ) ) {
+	if ( ! isset( $_REQUEST['action'] ) ) {
 		// Rebuild sitemap.xml
-		$log .= callModuleHook('', 'sitemapPage'); // sets the proper variables so we can now get our sitemap list
+		$log .= callModuleHook( '', 'sitemapPage' ); // sets the proper variables so we can now get our sitemap list
 		$log .= rebuildSitemapXML();
 		pruneLogs();
 
 		// Do any module specific cron tasks
-		$log .= callModuleHook('', 'cronTasks');
+		$log .= callModuleHook( '', 'cronTasks' );
 
 		// Run automatic updates if turned on
 		if ( isset( $mbp_config['ftsmbp_automatic_updates'] ) && $mbp_config['ftsmbp_automatic_updates'] == ACTIVE && A_LICENSE != 'FREE_VERSION' ) {
@@ -53,19 +52,22 @@ if ( $floodControlTimer <= time() || !$useFloodControl ) {
 		$log = updateMBPDatabase();
 	} elseif ( $_REQUEST['action'] == 'runJob' ) {
 		// Do any module specific cron tasks
-		$log = callModuleHook('', 'cronTasks', array(
-			'job' => $_REQUEST['job'],
-		));
+		$log = callModuleHook( '',
+			'cronTasks',
+			[
+				'job' => $_REQUEST['job'],
+			] );
 	}
 
-	if ( $showLog )
+	if ( $showLog ) {
 		echo $log;
+	}
 
 	// Add our flood control
 	add_config_value( 'ftsmbp_cron_flood_control_timer', strtotime( '+2 minutes' ) );
 
 	// Mark that we are done
-	updateLogEvent( $logID, array( 'stop' => time() ) );
+	updateLogEvent( $logID, [ 'stop' => time() ] );
 } else {
 	echo 'Flood Control: Please try again in 2 minutes.';
 }

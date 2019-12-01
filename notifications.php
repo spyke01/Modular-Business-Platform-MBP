@@ -1,4 +1,4 @@
-<?php 
+<?php
 /***************************************************************************
  *                               notifications.php
  *                            -------------------
@@ -9,28 +9,27 @@
  ***************************************************************************/
 
 
+if ( $_SESSION['user_level'] == SYSTEM_ADMIN || $_SESSION['user_level'] == CLIENT_ADMIN ) {
 
-if ($_SESSION['user_level'] == SYSTEM_ADMIN || $_SESSION['user_level'] == CLIENT_ADMIN) {
+	$unreadNotificationsCount = getUnreadUserNotificationsCount( $_SESSION['userid'] );
 
-    $unreadNotificationsCount = getUnreadUserNotificationsCount($_SESSION['userid']);
-
-    //==================================================
-    // Print out our notifications table
-    //==================================================
-    $page_content .= '
+	//==================================================
+	// Print out our notifications table
+	//==================================================
+	$page_content .= '
                 <div class="box tabbable">
                     <div class="box-header">
-                        <h3><i class="fa fa-bullhorn"></i> ' . __('Notifications') . '</h3>
+                        <h3><i class="fa fa-bullhorn"></i> ' . __( 'Notifications' ) . '</h3>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active">
-                            ' . (($unreadNotificationsCount > 0) ? '<button type="button" class="btn btn-primary mark-all-read mb-20" data-href="' . SITE_URL . '/ajax.php?action=markAllUserNotificationsAsRead">Mark all as read</button>' : '') . '
-                            ' . printUserNotificationsTable($_SESSION['userid']) . '
+                            ' . ( ( $unreadNotificationsCount > 0 ) ? '<button type="button" class="btn btn-primary mark-all-read mb-20" data-href="' . SITE_URL . '/ajax.php?action=markAllUserNotificationsAsRead">Mark all as read</button>' : '' ) . '
+                            ' . printUserNotificationsTable( $_SESSION['userid'] ) . '
                         </div>
                     </div>
                 </div>';
 
-	$page->setTemplateVar('PageContent', $page_content);
+	$page->setTemplateVar( 'PageContent', $page_content );
 } else {
-	$page->setTemplateVar('PageContent', notAuthorizedNotice());
+	$page->setTemplateVar( 'PageContent', notAuthorizedNotice() );
 }
