@@ -26,7 +26,6 @@ $available_widgets = $available_widgetAreas = $modules = $mbp_filter = $merged_f
 global $mbp_config, $ftsdb;
 
 // Do our main includes
-include(BASEPATH . '/includes/classes/pageclass.php');
 include(BASEPATH . '/includes/classes/tableclass.php');
 include( BASEPATH . '/includes/classes/FTSDB.php' );
 include( BASEPATH . '/_license.php' );
@@ -39,6 +38,7 @@ include( BASEPATH . '/includes/constants.php' );
 include( BASEPATH . '/includes/classes/fts-http.php' );
 include( BASEPATH . '/includes/classes/fts-locale.php' );
 include( BASEPATH . '/includes/classes/fts-map-rewrite-matches.php' );
+include( BASEPATH . '/includes/classes/Page.php' );
 
 // Increase our memory limit
 increase_memory_limit();
