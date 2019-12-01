@@ -25,13 +25,24 @@ module.exports = function(grunt) {
   */
     },
 
-    uglify: {
-      minify: {
-        files: {
-          '<%= dirs.js %>/functions.min.js': ['<%= dirs.js %>/functions.js'],
-          '<%= dirs.js %>/widgets.min.js': ['<%= dirs.js %>/widgets.js'],
-        },
-      },
+    browserify: {
+      development: {
+        src: [
+          '<%= dirs.js %>/functions.js',
+          '<%= dirs.js %>/widgets.js',
+        ],
+        dest: '<%= dirs.js %>/common.js',
+        options: {
+          browserifyOptions: { debug: true },
+          transform: [["babelify", { "presets": ["@babel/preset-env"] }]],
+          plugin: [
+            ["factor-bundle", { outputs: [
+                '<%= dirs.js %>/functions.min.js',
+                '<%= dirs.js %>/widgets.min.js',
+              ] }]
+          ]
+        }
+      }
     },
 
     jshint: {
@@ -123,7 +134,7 @@ module.exports = function(grunt) {
           'node_modules/bootstro/**',
           'node_modules/bootstrap-icon-picker/**',
           'node_modules/form/dist/**',
-          'node_modules/jquery_jeditable/**',
+          'node_modules/jquery-jeditable/dist/**',
           'node_modules/jquery-minicolors/**',
           'node_modules/jQuery-Timepicker-Addon/dist/**',
           'node_modules/jquery-validation/build/**',
@@ -197,7 +208,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-mkdir');
@@ -205,7 +216,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-text-replace');
 
   grunt.registerTask('default', [
-    'uglify',
+    'browserify',
   ]);
 
   grunt.registerTask('productionTasks', [
@@ -214,7 +225,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'uglify',
+    'browserify',
     'clean',
     'copy:build',
     'mkdir',
@@ -227,7 +238,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('release', [
-    'uglify',
+    'browserify',
     'clean',
     'copy:build',
     'mkdir',
