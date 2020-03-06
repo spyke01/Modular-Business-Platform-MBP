@@ -9,11 +9,9 @@
  *
  ***************************************************************************/
 
-
-//=========================================================
-// Returns a header for emails
-//=========================================================
 /**
+ * Returns a header for emails.
+ *
  * @return string
  */
 function returnEmailHeader() {
@@ -25,17 +23,15 @@ function returnEmailHeader() {
 		Website: " . returnHttpLinks( $mbp_config['ftsss_store_url'] ) . "<br /><br />";
 }
 
-//=========================================================
-// Sends an email message using the supplied values
-//=========================================================
+
 /***
- *
+ *Sends an email message using the supplied values
  * */
 function emailMessage( $emailAddress, $subject, $message, $from = '' ) {
 	global $mbp_config;
 
 	$from = ( empty( $from ) ) ? $mbp_config['ftsmbp_system_email_address'] : $from;
-	$mail = new PHPMailer( true ); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
+	$mail = new PHPMailer\PHPMailer\PHPMailer( true ); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
 
 	// Limit the rate at which we are sending the same email
 	if ( sentEmailRecently( $emailAddress, $subject, $message ) ) {
@@ -100,7 +96,7 @@ function emailMessage( $emailAddress, $subject, $message, $from = '' ) {
 		] );
 
 		return 1;
-	} catch ( phpmailerException $e ) {
+	} catch ( PHPMailer\PHPMailer\Exception $e ) {
 		//Pretty error messages from PHPMailer
 
 		// Log the failure
@@ -179,10 +175,9 @@ function sentEmailRecently( $emailAddress, $subject, $message ) {
 	return $exists;
 }
 
-//==================================================
-// Returns an array of the email template data
-//==================================================
 /**
+ * Returns an array of the email template data.
+ *
  * @param $template_id
  *
  * @return array|void
@@ -197,9 +192,13 @@ function getEmailTemplate( $template_id ) {
 	}
 }
 
-//=========================================================
-// Gets an email template's subject from a templateID or template_id
-//=========================================================
+/**
+ * Gets an email template's subject from a templateID or template_id.
+ *
+ * @param $template_id
+ *
+ * @return string
+ */
 function getEmailTemplateSubjectFromID( $template_id ) {
 	if ( is_numeric( $template_id ) ) {
 		// id column
@@ -210,9 +209,13 @@ function getEmailTemplateSubjectFromID( $template_id ) {
 	}
 }
 
-//=========================================================
-// Gets an email template's message from a templateID or template_id
-//=========================================================
+/**
+ * Gets an email template's message from a templateID or template_id.
+ *
+ * @param $template_id
+ *
+ * @return string
+ */
 function getEmailTemplateMessageFromID( $template_id ) {
 	if ( is_numeric( $template_id ) ) {
 		// id column
@@ -223,13 +226,22 @@ function getEmailTemplateMessageFromID( $template_id ) {
 	}
 }
 
-//=================================================
-// Add an email template to the DB
-//=================================================
+/**
+ * Add an email template to the DB.
+ *
+ * @param string $template_id
+ * @param string $name
+ * @param string $subject
+ * @param string $message
+ * @param string $added_by
+ * @param string $prefix
+ *
+ * @return int
+ */
 function addEmailTemplate( $template_id = '', $name = '', $subject = '', $message = '', $added_by = '', $prefix = '' ) {
 	global $ftsdb;
 
-	$result = $ftsdb->insert( DBTABLEPREFIX . 'email_templates',
+	return $ftsdb->insert( DBTABLEPREFIX . 'email_templates',
 		[
 			"template_id" => $template_id,
 			"name"        => $name,
@@ -238,13 +250,15 @@ function addEmailTemplate( $template_id = '', $name = '', $subject = '', $messag
 			"added_by"    => $added_by,
 			"prefix"      => $prefix,
 		] );
-
-	return $result;
 }
 
-//==================================================
-// Checks if an email template is in the database
-//==================================================
+/**
+ * Checks if an email template is in the database.
+ *
+ * @param $template_id
+ *
+ * @return int
+ */
 function emailTemplateExists( $template_id ) {
 	global $ftsdb;
 
@@ -270,9 +284,9 @@ function emailTemplateExists( $template_id ) {
  * @param mixed $template_id If numeric its the DB id, if a string then its the template_id field
  * @param array $users       An array of the users to send the email template to
  *
- * @return void
+ * @return array
  */
-function parseAndSendTemplateExists( $template_id, $users ) {
+function parseAndSendTemplateExists( $template_id, $users ): array {
 	global $ftsdb;
 	$errors = [];
 	$debug  = 0;
@@ -421,9 +435,13 @@ function displayEmailTemplateTags() {
 }
 
 
-//=================================================
-// Print the Email Templates Table
-//=================================================
+/**
+ * Print the Email Templates Table.
+ *
+ * @param string $extraSQL
+ *
+ * @return string
+ */
 function printEmailTemplatesTable( $extraSQL = '' ) {
 	global $ftsdb, $menuvar, $mbp_config, $tableColumns;
 
@@ -439,7 +457,7 @@ function printEmailTemplatesTable( $extraSQL = '' ) {
 	// Create table title
 	$table->addNewRow( [ [ 'data' => "Current Email Templates (" . count( $result ) . ")", "colspan" => $numOfColumns ] ], '', 'title1', 'thead' );
 
-	// Create column headers	
+	// Create column headers
 	$table->addNewRow( $table->generateTableColumns( $columns ), '', 'title2', 'thead' );
 
 	// Add our data
@@ -485,10 +503,11 @@ function printEmailTemplatesTable( $extraSQL = '' ) {
 			<div id=\"emailTemplatesTableUpdateNotice\"></div>";
 }
 
-//=================================================
-// Returns the JQuery functions used to run the 
-// email templates table
-//=================================================
+/**
+ * Returns the JQuery functions used to run the email templates table.
+ *
+ * @return string
+ */
 function returnEmailTemplatesTableJQuery() {
 	$JQueryReadyScripts = "
 			$('#emailTemplatesTable').tablesorter({ widgets: ['zebra'], headers: { 5: { sorter: false } } });";
@@ -496,9 +515,11 @@ function returnEmailTemplatesTableJQuery() {
 	return $JQueryReadyScripts;
 }
 
-//=================================================
-// Create a form to add new email templates
-//=================================================
+/**
+ * Create a form to add new email templates.
+ *
+ * @return string
+ */
 function printNewEmailTemplateForm() {
 	global $menuvar, $mbp_config;
 
@@ -524,21 +545,31 @@ function printNewEmailTemplateForm() {
 	return makeForm( 'newEmailTemplate', il( $menuvar['EMAILUSERS'] ), 'New Email Template', 'Create Email Template', $formFields, [], 1 );
 }
 
-//=================================================
-// Returns the JQuery functions used to run the 
-// new email template form
-//=================================================
+/**
+ * Returns the JQuery functions used to run the new email template form
+ *
+ * @param int $reprintTable
+ * @param int $allowModification
+ *
+ * @return string
+ */
 function returnNewEmailTemplateFormJQuery( $reprintTable = 0, $allowModification = 1 ) {
 	$table = ( $reprintTable == 0 ) ? '' : 'emailTemplatesTable';
 
 	return makeFormJQuery( 'newEmailTemplate', SITE_URL . "/ajax.php?action=createEmailTemplate&reprinttable=" . $reprintTable . "&showButtons=" . $allowModification, $table, 'email template' );
 }
 
-//=================================================
-// Create a form to edit email templates
-//=================================================
+/**
+ * Create a form to edit email templates
+ *
+ * @param $templateID
+ *
+ * @return string
+ */
 function printEditEmailTemplateForm( $templateID ) {
 	global $ftsdb, $menuvar, $mbp_config;
+
+	$content = '';
 
 	$result = $ftsdb->select( DBTABLEPREFIX . "email_templates",
 		"id = :id LIMIT 1",
@@ -583,17 +614,22 @@ function printEditEmailTemplateForm( $templateID ) {
 	return $content;
 }
 
-//=================================================
-// Returns the JQuery functions used to run the 
-// edit email template form
-//=================================================
+/**
+ * Returns the JQuery functions used to run the edit email template form.
+ *
+ * @param $templateID
+ *
+ * @return string
+ */
 function returnEditEmailTemplateFormJQuery( $templateID ) {
 	return makeFormJQuery( 'editEmailTemplate', SITE_URL . "/ajax.php?action=editEmailTemplate&id=" . $templateID );
 }
 
-//=================================================
-// Create a form to send an email template
-//=================================================
+/**
+ * Create a form to send an email template.
+ *
+ * @return string
+ */
 function printSendEmailTemplateForm() {
 	global $menuvar, $mbp_config;
 
@@ -618,10 +654,11 @@ function printSendEmailTemplateForm() {
 	return makeForm( 'sendEmailTemplate', il( $menuvar['EMAILUSERS'] ), 'Send Email to User(s)', 'Send Email', $formFields, [], 1 );
 }
 
-//=================================================
-// Returns the JQuery functions used to run the 
-// send email template form
-//=================================================
+/**
+ * Returns the JQuery functions used to run the send email template form.
+ *
+ * @return string
+ */
 function returnSendEmailTemplateFormJQuery() {
 	return makeFormJQuery( 'sendEmailTemplate', SITE_URL . "/ajax.php?action=sendEmailTemplate", '', 'email template' );
 }
