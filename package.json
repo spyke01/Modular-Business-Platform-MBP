@@ -1,27 +1,27 @@
 {
   "name": "modular-business-platform",
-  "version": "5.0.14",
+  "version": "5.0.15",
   "description": "The Modular Business Platform was designed to allow businesses to allow web designers and system administrators to create their own custom administrative websites.",
   "main": "Gruntfile.js",
   "dependencies": {
-    "autosize": "https://github.com/jackmoore/autosize.git",
+    "@claviska/jquery-minicolors": "^2.3.4",
+    "autosize": "^4.0.2",
     "bootbox.js": ">=4.3.0",
     "bootstrap": ">=3.3.7",
     "bootstrap-switch": ">=3.4.0",
-    "bootstrap-treeview": "https://github.com/jonmiles/bootstrap-treeview.git",
+    "bootstrap-treeview": "^1.2.0",
     "bootstro": "https://github.com/clu3/bootstro.js.git",
     "bower": "^1.8.8",
-    "form": "https://github.com/jquery-form/form.git",
     "gulp": "^4.0.2",
-    "jQuery-Timepicker-Addon": "https://github.com/trentrichardson/jQuery-Timepicker-Addon.git",
+    "jquery-form": "^4.2.2",
     "jquery-jeditable": "^2.0.13",
-    "jquery-minicolors": "https://github.com/claviska/jquery-minicolors",
+    "jquery-ui-timepicker-addon": "^1.6.3",
     "jquery.pwstrength": "https://github.com/ablanco/jquery.pwstrength.bootstrap.git",
-    "justgage": "https://github.com/toorshia/justgage",
+    "justgage": "^1.3.5",
     "knockout": ">=3.5.0",
-    "nestedSortable": "https://github.com/ilikenwf/nestedSortable.git",
+    "nestedSortable": "^1.3.4",
     "popper.js": "^1.15.0",
-    "raphael": "https://github.com/DmitryBaranovskiy/raphael.git",
+    "raphael": "^2.3.0",
     "select2": ">=4.0.10",
     "smartmenus": ">=1.1.0",
     "tablesorter": "https://github.com/christianbach/tablesorter.git"
@@ -52,13 +52,12 @@
     "gulp-concat": ">=2.6.1",
     "napa": "^3.0.0"
   },
-  "napa": {
-    "bootstrap-icon-picker": "https://github.com/tito433/Bootstrap-icon-picker.git",
-    "jquery_jeditable": "https://github.com/tuupola/jquery_jeditable.git"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "napa"
+  },
+  "napa": {
+    "bootstrap-icon-picker": "https://github.com/tito433/Bootstrap-icon-picker.git"
   },
   "repository": {
     "type": "git",
