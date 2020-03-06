@@ -135,7 +135,7 @@ function printViewTicketTable( $ticketID ) {
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "viewTicketTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "viewTicketTable" );
 
 	// Create table title
 	$table->addNewRow( array(
@@ -391,7 +391,7 @@ function printViewTicketDetailsTable( $ticketID ) {
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "viewTicketDetailsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "viewTicketDetailsTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => __( 'Details' ), "colspan" => "8" ) ), '', 'title1', 'thead' );
@@ -590,7 +590,7 @@ function printTicketsTable( $getVars = array() ) {
 	$numRows = ( $result ) ? count( $result ) : 0;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "ticketsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "ticketsTable" );
 
 	// Create table title
 	$table->addNewRow( array(

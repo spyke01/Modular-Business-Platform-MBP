@@ -34,7 +34,7 @@ function printPagesTable() {
 	$result = $ftsdb->select( DBTABLEPREFIX . "pages", "1 ORDER BY title ASC" );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "pagesTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "pagesTable" );
 
 	// Create table title
 	$table->addNewRow( array(

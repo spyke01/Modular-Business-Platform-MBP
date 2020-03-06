@@ -24,7 +24,7 @@ function printTicketsReport( $startDatetimestamp = "", $stopDatetimestamp = "", 
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "ticketsReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "ticketsReportTable" );
 
 	// Create table title
 	$table->addNewRow( array(
@@ -108,7 +108,7 @@ function printTicketEntriesReport( $startDatetimestamp = "", $stopDatetimestamp 
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "ticketEntriesReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "ticketEntriesReportTable" );
 
 	// Create table title
 	$table->addNewRow( array(

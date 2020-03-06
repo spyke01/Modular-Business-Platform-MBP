@@ -31,7 +31,7 @@ function printNotesTable( $clientID = "", $allowModification = 1 ) {
 	//echo $sql;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "notesTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "notesTable" );
 
 	// Create table title
 	$table->addNewRow( array(

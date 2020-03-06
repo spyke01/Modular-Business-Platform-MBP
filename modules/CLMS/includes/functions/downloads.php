@@ -29,7 +29,7 @@ function printDownloadsTable( $clientID = "", $allowModification = 1 ) {
 	$result = $ftsdb->select( "`" . DBTABLEPREFIX . "downloads` d, `" . DBTABLEPREFIX . "clients` c", "c.id = d.client_id" . $extraSQL . " ORDER BY c.last_name, d.name ASC", $selectBindData, 'd.*' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "downloadsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "downloadsTable" );
 
 	// Create table title
 	$table->addNewRow( array(

@@ -218,7 +218,7 @@ function printViewDateTable( $datetimestamp ) {
 	$result = $ftsdb->run( $sql, $selectBindData );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered", "viewDateTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered", "viewDateTable" );
 
 	// Create table title
 	$table->addNewRow( array(
@@ -292,7 +292,7 @@ function printAppointmentsTable( $clientID = "" ) {
 	//echo $sql;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "appointmentsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "appointmentsTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Appointments", "colspan" => "5" ) ), '', 'title1', 'thead' );
@@ -366,7 +366,7 @@ function printAppointmentsForTodayTable() {
 	//echo $sql;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "appointmentsForTodayTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "appointmentsForTodayTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Appointments for Today", "colspan" => "5" ) ), '', 'title1', 'thead' );

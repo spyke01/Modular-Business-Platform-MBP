@@ -177,7 +177,7 @@ function printInvoice( $invoiceID ) {
 			) );
 
 			// Create our new table
-			$table = new tableClass( '', '', '', "table table-striped table-bordered", "invoiceProductsTable" );
+			$table = new Table( '', '', '', "table table-striped table-bordered", "invoiceProductsTable" );
 
 			// Create column headers
 			$table->addNewRow(
@@ -306,7 +306,7 @@ function printEmailInvoice( $invoiceID ) {
 			) );
 
 			// Create our new table
-			$table = new tableClass( '', '', '', "table table-striped table-bordered", "invoiceProductsTable" );
+			$table = new Table( '', '', '', "table table-striped table-bordered", "invoiceProductsTable" );
 
 			// Create column headers
 			$table->addNewRow(
@@ -413,7 +413,7 @@ function printInvoicesTable( $clientID = "", $allowModification = 1 ) {
 	), 'i.*' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "invoicesTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "invoicesTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Invoices", "colspan" => "8" ) ), '', 'title1', 'thead' );
@@ -519,7 +519,7 @@ function printNewInvoiceForm( $clientID = "" ) {
 	$clientIDSelect = ( $clientID != "" ) ? "<input type=\"hidden\" name=\"client_id\" value=\"" . $clientID . "\" />" : "<div><label for=\"client_id\">Client <span>- Required</span></label> " . createDropdown( "clients", "client_id", "", "" ) . "</div>";
 
 	// Create our new table
-	$table = new tableClass( 0, 1, 1, "", "addInvoiceProductsTable" );
+	$table = new Table( 0, 1, 1, "", "addInvoiceProductsTable" );
 
 	// Create column headers
 	$table->addNewRow(
@@ -649,7 +649,7 @@ function printInvoicePaymentsTable( $invoiceID = "", $allowModification = 1 ) {
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "invoicePaymentsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "invoicePaymentsTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Invoice Payment History", "colspan" => "4" ) ), '', 'title1', 'thead' );
@@ -770,7 +770,7 @@ function printLargestInvoicesTable( $invoiceLimit = 5 ) {
 	), 'coalesce((SELECT SUM((ip.price + ip.profit + ip.shipping ) * ip.qty) FROM `' . DBTABLEPREFIX . 'invoices_products` ip WHERE ip.invoice_id = i.id), 0) - i.discount AS total, i.datetimestamp, i.client_id' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "largestInvoicesTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "largestInvoicesTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Largest Invoices", "colspan" => "5" ) ), '', 'title1', 'thead' );

@@ -58,7 +58,7 @@ function printTaggableReportsTable() {
 	$numRows = ( $result ) ? count( $result ) : 0;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "reportsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "reportsTable" );
 
 	// Create table title
 	$table->addNewRow( array(
@@ -151,7 +151,7 @@ function printTaggedReportsTable( $clientID = '' ) {
 	$numRows = ( $result ) ? count( $result ) : 0;
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "reportsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "reportsTable" );
 
 	// Create table title
 	$table->addNewRow( array(

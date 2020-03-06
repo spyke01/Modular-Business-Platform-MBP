@@ -46,7 +46,7 @@ function printSerialsTable( $clientID = "", $cat_id = "", $searchVars = array() 
 	), 's.*' . $extraFields );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter serialsTable", "serialsTable" . $tableSuffix );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter serialsTable", "serialsTable" . $tableSuffix );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => $tableTitle, "colspan" => "8" ) ), '', 'title1', 'thead' );

@@ -20,7 +20,7 @@ function printCallHomeTable() {
 	$result = $ftsdb->select( DBTABLEPREFIX . 'callhome', "1 ORDER BY application, location" );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter callHomeTable", "callHomeTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter callHomeTable", "callHomeTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => 'CallHome', "colspan" => "7" ) ), '', 'title1', 'thead' );
@@ -95,7 +95,7 @@ function printVersionsTable() {
 	$result = $ftsdb->select( DBTABLEPREFIX . 'versions', "1 ORDER BY app, type" );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter versionsTable", "versionsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter versionsTable", "versionsTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => 'Versions', "colspan" => "7" ) ), '', 'title1', 'thead' );

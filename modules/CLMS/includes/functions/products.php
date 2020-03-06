@@ -20,7 +20,7 @@ function printProductsTable() {
 	$result = $ftsdb->select( DBTABLEPREFIX . "products", "1 ORDER BY name ASC" );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "productsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "productsTable" );
 
 	// Create table title
 	$table->addNewRow( array(

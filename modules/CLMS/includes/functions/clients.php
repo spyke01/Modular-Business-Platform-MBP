@@ -188,7 +188,7 @@ function printClientsTable( $startsWith = 'ALL' ) {
 	$result = $ftsdb->select( DBTABLEPREFIX . "clients", "id IN (" . $preparedInClause['binds'] . ")" . $extraSQL . " ORDER BY company ASC", $selectBindData );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "clientsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "clientsTable" );
 
 	// Create table title
 	$table->addNewRow( array(
@@ -263,7 +263,7 @@ function printHighestPayingClientsTable( $invoiceLimit = 5 ) {
 	), 'sum(coalesce((SELECT SUM((ip.price + ip.profit + ip.shipping ) * ip.qty) FROM `' . DBTABLEPREFIX . 'invoices_products` ip WHERE ip.invoice_id = i.id), 0)) - i.discount AS total_ordered, i.client_id' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "highestPayingClientsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "highestPayingClientsTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Highest Paying Clients", "colspan" => "5" ) ), '', 'title1', 'thead' );

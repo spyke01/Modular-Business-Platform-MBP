@@ -121,7 +121,7 @@ function printSEOClientsTable( $status = '' ) {
 	$result = $ftsdb->select( DBTABLEPREFIX . "seo_clients", $extraSQL . " ORDER BY name", $selectBindData );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "seoClientsTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "seoClientsTable" );
 
 	// Create table title
 	$table->addNewRow( array(

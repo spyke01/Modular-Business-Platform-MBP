@@ -63,7 +63,7 @@ function printInvoiceAccountsAgingReport() {
 	$result = $ftsdb->run( $sql, $selectBindData );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "accountsAgingReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "accountsAgingReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Accounts Aging", "colspan" => "5" ) ), '', 'title1', 'thead' );
@@ -128,7 +128,7 @@ function printClientDetailsReport() {
 	$result = $ftsdb->select( "`" . DBTABLEPREFIX . "clients` c LEFT JOIN `" . DBTABLEPREFIX . "categories` cat ON c.cat_id = cat.id", "c.id IN (" . $preparedInClause['binds'] . ") ORDER BY cat.name, c.last_name, c.first_name", $selectBindData, 'c.*, cat.name' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "clientDetailsReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "clientDetailsReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Client Details", "colspan" => "18" ) ), '', 'title1', 'thead' );
@@ -219,7 +219,7 @@ function printInvoicesReport() {
 	$result = $ftsdb->select( "`" . DBTABLEPREFIX . "invoices` i LEFT JOIN `" . DBTABLEPREFIX . "clients` c ON i.client_id = c.id", "c.id IN (" . $preparedInClause['binds'] . ") ORDER BY i.status, c.last_name, c.first_name", $selectBindData, 'i.*, c.first_name, c.last_name' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "invoicesReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "invoicesReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Invoices", "colspan" => "9" ) ), '', 'title1', 'thead' );
@@ -295,7 +295,7 @@ function printInvoicePaymentsReport() {
 	$result = $ftsdb->select( "`" . DBTABLEPREFIX . "invoices_payments` ipa LEFT JOIN `" . DBTABLEPREFIX . "invoices` i ON ipa.invoice_id = i.id LEFT JOIN `" . DBTABLEPREFIX . "clients` c ON i.client_id = c.id", "c.id IN (" . $preparedInClause['binds'] . ") ORDER BY i.status, c.last_name, c.first_name, ipa.datetimestamp", $selectBindData, 'ipa.*, i.id AS invoiceID, c.first_name, c.last_name' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "invoicePaymentsReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "invoicePaymentsReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Invoice Payments", "colspan" => "9" ) ), '', 'title1', 'thead' );
@@ -360,7 +360,7 @@ function printSerialNumbersReport() {
 	$result = $ftsdb->select( "`" . DBTABLEPREFIX . "downloads` d LEFT JOIN `" . DBTABLEPREFIX . "clients` c ON d.client_id = c.id", "c.id IN (" . $preparedInClause['binds'] . ") ORDER BY c.last_name, c.first_name", $selectBindData, 'c.first_name, c.last_name, d.name, d.serial_number, d.datetimestamp' );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "serialNumbersReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "serialNumbersReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => "Serial Numbers", "colspan" => "5" ) ), '', 'title1', 'thead' );

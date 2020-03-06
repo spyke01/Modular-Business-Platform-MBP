@@ -24,7 +24,7 @@ function printSerialsReport( $startDatetimestamp = "", $stopDatetimestamp = "", 
 	) );
 
 	// Create our new table
-	$table = new tableClass( '', '', '', "table table-striped table-bordered tablesorter", "serialsReportTable" );
+	$table = new Table( '', '', '', "table table-striped table-bordered tablesorter", "serialsReportTable" );
 
 	// Create table title
 	$table->addNewRow( array( array( 'data' => 'Serials', "colspan" => "9" ) ), '', 'title1', 'thead' );
