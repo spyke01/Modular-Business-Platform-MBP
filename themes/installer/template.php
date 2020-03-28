@@ -85,7 +85,7 @@
 
         <script src="<?php echo SITE_URL; ?>/node_modules/bootbox.js/bootbox.min.js"></script>
         <script src="<?php echo SITE_URL; ?>/node_modules/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-        <script src="<?php echo SITE_URL; ?>/node_modules/form/dist/jquery.form.min.js"></script>
+        <script src="<?php echo SITE_URL; ?>/node_modules/jquery-form/dist/jquery.form.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
         <script src="<?php echo SITE_URL; ?>/node_modules/jquery.pwstrength/dist/pwstrength-bootstrap.min.js"></script>
 

@@ -99,8 +99,8 @@ if ( ! empty( $mbp_config['ftsmbp_theme_modern_settings_backgroundImageForLoginP
         <script src="//use.fontawesome.com/e30b1ab369.js"></script>
 
         <script src="<?php echo SITE_URL; ?>/node_modules/bootbox.js/bootbox.min.js"></script>
-        <script src="<?php echo SITE_URL; ?>/node_modules/form/dist/jquery.form.min.js"></script>
-        <script src="<?php echo SITE_URL; ?>/node_modules/jquery-minicolors/jquery.minicolors.min.js"></script>
+        <script src="<?php echo SITE_URL; ?>/node_modules/jquery-form/dist/jquery.form.min.js"></script>
+        <script src="<?php echo SITE_URL; ?>/node_modules/@claviska/jquery-minicolors/jquery.minicolors.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="<?php echo SITE_URL; ?>/node_modules/select2/dist/js/select2.js"></script>
 
