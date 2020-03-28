@@ -36,7 +36,7 @@ if ( ! empty( $mbp_config['ftsmbp_theme_modern_settings_backgroundImageForLoginP
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/bootstrap-icon-picker/css/icon-picker.min.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/jquery-minicolors/jquery.minicolors.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/select2/dist/css/select2.css" />
-        <link rel="stylesheet" href="<?php echo SITE_URL; ?>/themes/jquery/uploadify/uploadify.css" />
+        <link rel="stylesheet" href="<?php echo SITE_URL; ?>/themes/jquery/uploadify/uploadifive.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.print.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/themes/<?php echo $mbp_config['ftsmbp_theme']; ?>/css/main.css" />

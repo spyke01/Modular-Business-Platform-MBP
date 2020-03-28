@@ -13,4 +13,3 @@ if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . $targetFolder . '/' . $_POST['file
 } else {
 	echo 0;
 }
-?>

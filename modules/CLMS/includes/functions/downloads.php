@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 
-
 //=================================================
 // Print the Downloads Table
 //=================================================
@@ -20,9 +19,10 @@ function printDownloadsTable( $clientID = "", $allowModification = 1 ) {
 	// Prep our IN clause data
 	$preparedInClause = $ftsdb->prepareInClauseVariable( getMyClientIDs() );
 	$selectBindData   = $preparedInClause['data'];
-	$selectBindData   = array_merge( $selectBindData, array(
-		":clientID" => $clientID
-	) );
+	$selectBindData   = array_merge( $selectBindData,
+		array(
+			":clientID" => $clientID,
+		) );
 
 	$extraSQL = ( $clientID != "" ) ? " AND c.id = :clientID" : " AND c.id IN (" . $preparedInClause['binds'] . ")";
 
@@ -35,15 +35,18 @@ function printDownloadsTable( $clientID = "", $allowModification = 1 ) {
 	$table->addNewRow( array(
 		array(
 			'data'    => '<i class="glyphicon glyphicon-download"></i> ' . __( 'Downloads' ),
-			"colspan" => "4"
-		)
-	), '', 'title1', 'thead' );
+			"colspan" => "4",
+		),
+	),
+		'',
+		'title1',
+		'thead' );
 
 	// Create column headers
 	$headerNameArray = array(
 		array( 'type' => 'th', 'data' => "File" ),
 		array( 'type' => 'th', 'data' => "Serial Number" ),
-		array( 'type' => 'th', 'data' => "Uploaded On" )
+		array( 'type' => 'th', 'data' => "Uploaded On" ),
 	);
 
 	if ( $allowModification == 1 ) {
@@ -57,9 +60,11 @@ function printDownloadsTable( $clientID = "", $allowModification = 1 ) {
 		$table->addNewRow( array(
 			array(
 				'data'    => "There are no downloads for this client.",
-				"colspan" => "4"
-			)
-		), "downloadsTableDefaultRow", "greenRow" );
+				"colspan" => "4",
+			),
+		),
+			"downloadsTableDefaultRow",
+			"greenRow" );
 	} else {
 		foreach ( $result as $row ) {
 			$finalColumn = ( user_access( 'clms_downloads_delete' ) ) ? createDeleteLinkWithImage( $row['id'], $row['id'] . "_row", "downloads", "download" ) : "";
@@ -68,7 +73,7 @@ function printDownloadsTable( $clientID = "", $allowModification = 1 ) {
 			$rowDataArray = array(
 				array( 'data' => '<a href="' . $row['url'] . '">' . $row['name'] . '</a>' ),
 				array( 'data' => '<div id="edit-downloads-' . $row['id'] . '_serial_number">' . $row['serial_number'] . '</div>' ),
-				array( 'data' => makeDateTime( $row['datetimestamp'] ) )
+				array( 'data' => makeDateTime( $row['datetimestamp'] ) ),
 			);
 
 			if ( $allowModification == 1 ) {
@@ -116,7 +121,7 @@ function printNewDownloadForm( $clientID = "" ) {
 	if ( ! empty( $clientID ) ) {
 		$clientIDField = array(
 			'type'  => 'hidden',
-			'value' => $clientID
+			'value' => $clientID,
 		);
 	} else {
 		$clientIDField = array(
@@ -126,34 +131,35 @@ function printNewDownloadForm( $clientID = "" ) {
 		);
 	}
 
-	$formFields = apply_filters( 'form_fields_clms_downloads_new', array(
-		'client_id'        => $clientIDField,
-		'uplodedFilesName' => array(
-			'type'  => 'hidden',
-			'value' => ''
-		),
-		'name'             => array(
-			'text'  => 'Download Name',
-			'type'  => 'text',
-			'class' => 'required',
-		),
-		'file'             => array(
-			'text' => 'Upload File',
-			'type' => 'file',
-		),
+	$formFields = apply_filters( 'form_fields_clms_downloads_new',
 		array(
-			'type'  => 'html',
-			'value' => '-or-',
-		),
-		'url'              => array(
-			'text' => 'File URL',
-			'type' => 'text',
-		),
-		'serial_number'    => array(
-			'text' => 'Serial Number',
-			'type' => 'text',
-		),
-	) );
+			'client_id'        => $clientIDField,
+			'uplodedFilesName' => array(
+				'type'  => 'hidden',
+				'value' => '',
+			),
+			'name'             => array(
+				'text'  => 'Download Name',
+				'type'  => 'text',
+				'class' => 'required',
+			),
+			'file'             => array(
+				'text' => 'Upload File',
+				'type' => 'file',
+			),
+			array(
+				'type'  => 'html',
+				'value' => '-or-',
+			),
+			'url'              => array(
+				'text' => 'File URL',
+				'type' => 'text',
+			),
+			'serial_number'    => array(
+				'text' => 'Serial Number',
+				'type' => 'text',
+			),
+		) );
 
 	return makeForm( 'newDownload', il( $clmsMenus['DOWNLOADS']['link'] ), 'New Download', 'Create Download', $formFields, array(), 1 );
 }
@@ -168,15 +174,15 @@ function returnNewDownloadFormJQuery( $reprintTable = 0, $allowModification = 1 
 	$table = ( $reprintTable == 0 ) ? '' : 'downloadsTable';
 
 	$JQueryReadyScripts = "
-		$(\"#file\").uploadify({
-			'formData'     : {
-				'timestamp' : '" . $timestamp . "',
-				'token'     : '" . md5( 'unique_salt' . $timestamp ) . "'
+		$(\"#file\").uploadifive({
+			auto             : true,
+			checkScript      : '" . SITE_URL . "/themes/jquery/uploadify/check-exists.php',
+			formData         : {
+				timestamp    : '" . $timestamp . "',
+				token        : '" . md5( 'unique_salt' . $timestamp ) . "'
 			},
-			'swf'            : '" . SITE_URL . "/themes/jquery/uploadify/uploadify.swf',
-			'uploader'       : '" . SITE_URL . "/uploadify.php',
-			'auto'           : true,
-			'onUploadSuccess' : function(file, data, response) {
+			uploadScript     : '" . SITE_URL . "/uploadifive.php',
+			onUploadComplete : function(file, data) {
 				$('#uplodedFilesName').val(data);
 			}
 		});

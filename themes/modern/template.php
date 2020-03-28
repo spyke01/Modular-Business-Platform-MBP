@@ -122,7 +122,7 @@ $widgets['wa-leftCol']          = displayWidgetsByArea( 'wa-leftCol' );
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/jquery-minicolors/jquery.minicolors.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/select2/dist/css/select2.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/node_modules/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.css" />
-        <link rel="stylesheet" href="<?php echo SITE_URL; ?>/themes/jquery/uploadify/uploadify.css" />
+        <link rel="stylesheet" href="<?php echo SITE_URL; ?>/themes/jquery/uploadify/uploadifive.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.print.css" />
         <link rel="stylesheet" href="<?php echo SITE_URL; ?>/javascripts/addons/file-manager/jquery.file.manager.css" />
@@ -312,7 +312,7 @@ $widgets['wa-leftCol']          = displayWidgetsByArea( 'wa-leftCol' );
         <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
         <script src="//use.fontawesome.com/e30b1ab369.js"></script>
 
-        <script src="<?php echo SITE_URL; ?>/javascripts/jquery.uploadify.min.js"></script>
+        <script src="<?php echo SITE_URL; ?>/javascripts/jquery.uploadifive.min.js"></script>
 
         <script src="<?php echo SITE_URL; ?>/node_modules/autosize/dist/autosize.min.js"></script>
         <script src="<?php echo SITE_URL; ?>/node_modules/bootbox.js/bootbox.min.js"></script>
