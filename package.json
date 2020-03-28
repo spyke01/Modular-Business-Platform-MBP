@@ -8,7 +8,7 @@
     "autosize": "^4.0.2",
     "bootbox.js": ">=4.3.0",
     "bootstrap": ">=3.3.7",
-    "bootstrap-switch": ">=3.4.0",
+    "bootstrap-switch": "3.3.4",
     "bootstrap-treeview": "^1.2.0",
     "bootstro": "https://github.com/clu3/bootstro.js.git",
     "bower": "^1.8.8",
