@@ -1,6 +1,6 @@
 {
   "name": "modular-business-platform",
-  "version": "5.0.15",
+  "version": "5.0.16",
   "description": "The Modular Business Platform was designed to allow businesses to allow web designers and system administrators to create their own custom administrative websites.",
   "main": "Gruntfile.js",
   "dependencies": {

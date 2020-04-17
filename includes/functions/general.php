@@ -722,7 +722,7 @@ function get_time_diff( $from, $to ) {
  *
  * @return mixed|string|string[]|null
  */
-Function bbcode( $str ) {
+function bbcode( $str ) {
 	// Makes < and > page friendly
 	//$str=str_replace("&","&amp;",$str);
 	$str = str_replace( "<", "&lt;", $str );
@@ -1273,6 +1273,57 @@ function backslashit( $string ) {
 	$string = preg_replace( '/([a-z])/i', '\\\\\1', $string );
 
 	return $string;
+}
+
+/**
+ * Removes trailing forward slashes and backslashes if they exist.
+ *
+ * The primary use of this is for paths and thus should be used for paths. It is
+ * not restricted to paths and offers no specific path support.
+ *
+ * @param string $string What to remove the trailing slashes from.
+ *
+ * @return string String without the trailing slashes.
+ * @since 5.0.16
+ *
+ */
+function untbackslashit( $string ) {
+	return ltrim( $string, '/\\' );
+}
+
+/**
+ * Appends a trailing slash.
+ *
+ * Will remove trailing forward and backslashes if it exists already before adding
+ * a trailing forward slash. This prevents double slashing a string or path.
+ *
+ * The primary use of this is for paths and thus should be used for paths. It is
+ * not restricted to paths and offers no specific path support.
+ *
+ * @param string $string What to add the trailing slash to.
+ *
+ * @return string String with trailing slash added.
+ * @since 5.0.16
+ *
+ */
+function trailingslashit( $string ) {
+	return untrailingslashit( $string ) . '/';
+}
+
+/**
+ * Removes trailing forward slashes and backslashes if they exist.
+ *
+ * The primary use of this is for paths and thus should be used for paths. It is
+ * not restricted to paths and offers no specific path support.
+ *
+ * @param string $string What to remove the trailing slashes from.
+ *
+ * @return string String without the trailing slashes.
+ * @since 5.0.16
+ *
+ */
+function untrailingslashit( $string ) {
+	return rtrim( $string, '/\\' );
 }
 
 /**
