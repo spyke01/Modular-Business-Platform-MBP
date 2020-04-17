@@ -18,45 +18,46 @@ if ( ! empty( $_FILES ) && $_POST['token'] == $verifyToken ) {
 	$tempFile         = $_FILES['Filedata']['tmp_name'];
 	$uploadedFilename = $_FILES['Filedata']['name'];
 
-	// Get our file name and extension so we can modify the name
-	$fileName = basename( $uploadedFilename );
-
 	// Validate the file type
 	$fileTypes = [
+		'3gp',
+		'3g2',
+		'ai',
+		'avi',
+		'csv',
+		'doc',
+		'docx',
 		'jpg',
 		'jpeg',
 		'gif',
+		'mp3',
+		'm4a',
+		'mp4',
+		'mov',
+		'mpg',
+		'odt',
+		'ogg',
+		'ogv',
+		'pdf',
 		'png',
-		'tiff',
-		'doc',
-		'docx',
 		'ppt',
 		'pptx',
 		'pps',
 		'ppsx',
-		'odt',
-		'pdf',
+		'psd',
+		'sql',
+		'tiff',
 		'txt',
+		'wav',
+		'wmv',
 		'xls',
 		'xlsx',
-		'csv',
-		'psd',
-		'ai',
-		'mp3',
-		'm4a',
-		'ogg',
-		'wav',
-		'mp4',
-		'mov',
-		'wmv',
-		'avi',
-		'mpg',
-		'ogv',
-		'3gp',
-		'3g2',
-	]; // File extensions
+	];
+
+	// Get our file name and extension so we can modify the name
 	$fileParts = pathinfo( $uploadedFilename );
 	$fileExt   = $fileParts['extension'];
+	$fileName  = $fileParts['filename'];
 
 	if ( in_array( $fileExt, $fileTypes ) ) {
 		// Append a timestamp on our filename			
