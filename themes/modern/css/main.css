@@ -45,8 +45,6 @@ a:hover {
     a:focus {
         outline: none;
     }
-
-;
 }
 
 .no-animation {
@@ -107,16 +105,12 @@ a:hover {
     #tablet-screen-width-point {
         display: block;
     }
-
-;
 }
 
 @media (min-width: 768px) {
     #tablet-screen-width-point {
         display: none !important;
     }
-
-;
 }
 
 body:before,
@@ -176,8 +170,6 @@ body:after,
         -webkit-transition: padding 0.5s;
         transition: padding 0.5s;
     }
-
-;
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
@@ -195,8 +187,6 @@ body:after,
         -webkit-transition: padding 0.5s;
         transition: padding 0.5s;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -214,8 +204,6 @@ body:after,
         -webkit-transition: padding 0.5s;
         transition: padding 0.5s;
     }
-
-;
 }
 
 .disable-mm-animation #main-navbar .navbar-inner,
@@ -245,8 +233,6 @@ body:after,
         -ms-animation-duration: 0s !important;
         animation-duration: 0s !important;
     }
-
-;
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
@@ -257,8 +243,6 @@ body:after,
         -ms-animation-duration: 0s !important;
         animation-duration: 0s !important;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -269,8 +253,6 @@ body:after,
         -ms-animation-duration: 0s !important;
         animation-duration: 0s !important;
     }
-
-;
 }
 
 .main-navbar-fixed #main-navbar {
@@ -538,8 +520,6 @@ body:after,
     #main-navbar .dropdown.open > a:after {
         content: "\f077";
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -794,7 +774,7 @@ body:after,
         }
         100% {
             opacity: 0;
-            transform: translate3d(2000px, 0px, 0px);
+            transform: translate3d(2000px, 0, 0);
         }
     }
 
@@ -835,8 +815,6 @@ body:after,
         content: "\f0d9";
         right: 16px;
     }
-
-;
 }
 
 @media (min-width: 992px) {
@@ -852,8 +830,6 @@ body:after,
     .main-menu-right #main-navbar .navbar-header {
         width: auto;
     }
-
-;
 }
 
 #main-navbar-collapse .iScrollVerticalScrollbar {
@@ -1245,8 +1221,6 @@ body:after,
         left: auto;
         right: 14px;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -1369,8 +1343,6 @@ body:after,
         left: 7px;
         right: auto;
     }
-
-;
 }
 
 .mme #main-navbar {
@@ -1427,8 +1399,6 @@ body:after,
     .mme #main-navbar #main-menu-toggle {
         width: 240px;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -1453,16 +1423,12 @@ body:after,
     #main-navbar .navbar-header {
         padding-left: 56px !important;
     }
-
-;
 }
 
 @media (min-width: 768px) {
     #main-navbar .navbar-header {
         width: 240px;
     }
-
-;
 }
 
 .main-menu-right #main-menu-bg {
@@ -1544,8 +1510,6 @@ body:after,
     .main-menu-right.mme #main-navbar #main-menu-toggle {
         width: 240px;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -1577,8 +1541,6 @@ body:after,
     .main-menu-right #main-navbar .navbar-header {
         padding-left: 0 !important;
     }
-
-;
 }
 
 body.no-main-menu #main-menu,
@@ -1671,8 +1633,6 @@ body.no-main-menu #main-navbar .navbar-inner {
     .navbar .nav-icon-btn.dropdown > .dropdown-menu {
         display: none !important;
     }
-
-;
 }
 
 @media (min-width: 768px) {
@@ -1723,8 +1683,6 @@ body.no-main-menu #main-navbar .navbar-inner {
     .navbar .nav-icon-btn > a .small-screen-text {
         display: none;
     }
-
-;
 }
 
 .btn {
@@ -2564,8 +2522,8 @@ h6 .label {
     content: "";
     display: block;
     position: absolute;
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-style: solid;
     border-width: 10px 12px 10px 0;
     border-color: transparent #b0b0b0 transparent transparent;
@@ -3709,14 +3667,12 @@ a.list-group-item.active .badge {
         margin-bottom: 0;
         width: auto;
     }
-
-;
 }
 
 .form-horizontal .checkbox,
 .form-horizontal .radio {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .form-horizontal .control-label {
@@ -3729,8 +3685,6 @@ a.list-group-item.active .badge {
         margin-bottom: 0;
         padding-top: 7px;
     }
-
-;
 }
 
 legend {
@@ -4237,7 +4191,7 @@ optgroup {
     height: 15px;
     line-height: 15px;
     font-size: 11px;
-    font-family: FontAwesome;
+    font-family: FontAwesome, serif;
     text-align: center;
 }
 
@@ -4281,8 +4235,6 @@ optgroup {
     .gt-ie8 .form-inline .checkbox input.px + .lbl {
         margin-left: 20px;
     }
-
-;
 }
 
 .px-single {
@@ -5533,8 +5485,6 @@ optgroup {
     .modal-alert .modal-dialog {
         width: 350px;
     }
-
-;
 }
 
 .modal-alert .modal-header,
@@ -5805,7 +5755,7 @@ optgroup {
     background: #333;
     content: " ";
     display: block;
-    font-size: 0px;
+    font-size: 0;
     height: 1px;
     left: 0;
     position: absolute;
@@ -7576,8 +7526,6 @@ body:not(.right-to-left) .no-border-l {
     .text-right-sm {
         text-align: right;
     }
-
-;
 }
 
 @media (min-width: 992px) {
@@ -7592,8 +7540,6 @@ body:not(.right-to-left) .no-border-l {
     .text-right-md {
         text-align: right;
     }
-
-;
 }
 
 @media (min-width: 1200px) {
@@ -7608,8 +7554,6 @@ body:not(.right-to-left) .no-border-l {
     .text-right-lg {
         text-align: right;
     }
-
-;
 }
 
 .valign-top,
@@ -8009,24 +7953,18 @@ body:not(.right-to-left) .no-border-l {
     .col-sm-auto {
         width: auto;
     }
-
-;
 }
 
 @media (min-width: 992px) {
     .col-md-auto {
         width: auto;
     }
-
-;
 }
 
 @media (min-width: 1200px) {
     .col-lg-auto {
         width: auto;
     }
-
-;
 }
 
 /* Layout helpers
@@ -9612,8 +9550,8 @@ body .ui-tooltip {
     overflow: hidden !important;
     position: absolute !important;
     outline: 0 !important;
-    left: 0px !important;
-    top: 0px !important;
+    left: 0 !important;
+    top: 0 !important;
 }
 
 .select2-display-none {
@@ -9872,8 +9810,8 @@ body .ui-tooltip {
 }
 
 .pagination {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     white-space: nowrap;
 }
 
@@ -9895,7 +9833,7 @@ body .ui-tooltip {
 }
 
 .pagination a.dp-nav {
-    margin: 0px;
+    margin: 0;
     font-family: FontAwesome;
     padding: 17px 0;
     line-height: 20px;
@@ -10247,8 +10185,6 @@ a.editable-click.editable-disabled:hover {
     .bootbox.bootbox-sm .modal-dialog {
         width: 300px;
     }
-
-;
 }
 
 .bootbox .modal-footer {
