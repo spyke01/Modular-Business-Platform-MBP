@@ -471,6 +471,11 @@ body:after,
     margin-left: 7px;
 }
 
+#main-navbar #impersonationHolder {
+    line-height: 46px;
+    padding: 0 0.5rem;
+}
+
 .mme #main-navbar {
     overflow: hidden;
 }

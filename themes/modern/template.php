@@ -169,6 +169,14 @@ $widgets['wa-leftCol']          = displayWidgetsByArea( 'wa-leftCol' );
                                 <div class="right clearfix">
                                     <ul class="nav navbar-nav pull-right right-navbar-nav">
 
+										<?php
+										$additionalTopRightNavItems = apply_filters( 'additional_top_right_nav_items', '' );
+
+										if ( ! empty( $additionalTopRightNavItems ) ) {
+											echo "<li class=\"dropdown\">{$additionalTopRightNavItems}</li>";
+										}
+										?>
+
                                         <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 

@@ -147,7 +147,7 @@ function returnInlineImpersonationForm() {
 
 	if ( isset( $_SESSION['actual_userid'] ) ) {
 		// Show the "Stop Impersonating" button
-		return '<div id="impersontationHolder"><a href="' . il( $impersonationMenus['IMPERSONATE']['link'] . '&action=stop' ) . '"><span class="btn btn-danger">Stop Impersonating ' . $_SESSION['full_name'] . '</span></a></div>';
+		return '<div id="impersonationHolder"><a href="' . il( $impersonationMenus['IMPERSONATE']['link'] . '&action=stop' ) . '"><span class="btn btn-danger">Stop Impersonating ' . $_SESSION['full_name'] . '</span></a></div>';
 	} elseif ( user_access( 'impersonation_access' ) ) {
 		// Print the impersonation form
 		$page->setTemplateVar( "JQueryReadyScript", $page->getTemplateVar( "JQueryReadyScript" ) . returnImpersonationFormJQuery() );
@@ -171,7 +171,7 @@ function returnInlineImpersonationForm() {
 		}
 
 		return '
-			<div id="impersontationHolder">
+			<div id="impersonationHolder">
 				<form name="impersonateUsersForm" id="impersonateUsersForm" action="' . il( $impersonationMenus['IMPERSONATE']['link'] ) . '" method="post" class="form-inline" role="form">
 					' . $formItems . '
 					<input type="submit" name="submit" class="btn btn-success" value="Impersonate" />

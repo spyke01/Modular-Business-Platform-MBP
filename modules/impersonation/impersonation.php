@@ -33,7 +33,7 @@ class impersonation {
 		//$page->addScript($myFolder . 'javascripts/functions.js');
 
 		// Set our updateRequestURL
-		$this->updateRequestURL = 'https://www.fasttracksites.com/versions/serialChecker.php?response=json&app=module_' . $this->prefix . '&serial=' . $mbp_config['ftsmbp_impersonation_serial'];
+		// $this->updateRequestURL = 'https://www.fasttracksites.com/versions/serialChecker.php?response=json&app=module_' . $this->prefix . '&serial=' . $mbp_config['ftsmbp_impersonation_serial'];
 	}
 
 	//====================================
