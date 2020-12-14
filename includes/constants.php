@@ -13,7 +13,7 @@
 // Application
 //=====================================================
 define( 'A_NAME', 'fts_mbp' );
-define( 'A_VERSION', '{{ VERSION }}' );
+define( 'A_VERSION', '5.0.17' );
 define( 'APP_PREFIX', 'ftsmbp' );
 
 //=====================================================

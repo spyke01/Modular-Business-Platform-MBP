@@ -50,9 +50,31 @@ Next upload the contents of `/dist` to your site and navigate to `/install.php` 
 
 * If asked for a serial number or license information, enter anything you want. We have removed the license checks so it doesn't matter.
 
+TinyMCE 5
+-------------------
+This code now contains TinyMCE5 which requires an API key and domain whitelisting. We stuck with TinyMCE 4 for as long as we could but unfortunately we need to make the move and this means more configuration requirements for people who want to use this software.
+
+You will need to sign up for an API key with Tiny Cloud for free by visiting the [Free Forever Registration Page](https://www.tiny.cloud/auth/signup)
+
+Once you have an account your will need to choose the Javascript integration and find the section that says "Step 1: Include the TinyMCE script" you'll need this code to start editing your files. There are 3 files you must edit to get your API Key working:
+
+* ./themes/modern/printerFriendlyTemplate.php
+* ./themes/modern/template.php
+* ./themes/modern/template-login.php
+
+Look for the following line in each and replace it with your code from Tiny Cloud.
+
+```<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>```
+
+
+Next you must Add the Domain where you will be using the software. Tiny Cloud requires that you validate your email, but once you have done this, you will need to add all domains and subdomains that this code will appear on.
+
+Once you have made these changes then upload the newly changed files, and you should no longer see a notice about signing up for a Tiny Cloud account or missing API Keys.
+
+
 Notes About License Checks and Updates
 -------------------
-The original version of the system had the capability to perform license, blacklist, and update checks. I have left the cod ein place but commented it out to bypass it's need. I did not remove it so tha tif someone wishes to reinstate updates the code is available.
+The original version of the system had the capability to perform license, blacklist, and update checks. I have left the code in place but commented it out to bypass it. I did not remove it so tha tif someone wishes to reinstate updates the code is available.
 
 
 Version Numbers

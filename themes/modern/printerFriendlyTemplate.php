@@ -97,7 +97,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.1/fullcalendar.min.js"></script>
         <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
         <script src="//cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
         <script src="//use.fontawesome.com/e30b1ab369.js"></script>
 

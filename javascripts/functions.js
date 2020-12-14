@@ -37,7 +37,7 @@ $(document).ready(function() {
       plugins: [
         'advlist autolink link image lists charmap hr anchor spellchecker',
         'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-        'table contextmenu directionality emoticons paste textcolor',
+        'table directionality emoticons paste',
       ],
       removed_menuitems: 'newdocument',
       //content_css: "css/content.css",
@@ -70,7 +70,7 @@ $(document).ready(function() {
       plugins: [
         'advlist autolink link image lists charmap hr anchor spellchecker',
         'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-        'table contextmenu directionality emoticons paste textcolor',
+        'table directionality emoticons paste',
       ],
       removed_menuitems: 'newdocument',
       menubar: false,
@@ -135,7 +135,6 @@ $(document).ready(function() {
           console.log(log);
         } catch (e) {}
       },
-      theme: 'bootstrap',
     });
   }
 
